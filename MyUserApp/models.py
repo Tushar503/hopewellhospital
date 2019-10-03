@@ -19,4 +19,5 @@ class UserSignup(models.Model):
     UserState=models.CharField(max_length=200,default="")
     isActive = models.BooleanField(default=True)
 
+a=None
 
