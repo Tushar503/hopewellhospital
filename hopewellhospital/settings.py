@@ -85,8 +85,8 @@ DATABASES = {
         'NAME': 'hopewelldb',
         'PORT':'3306',
         'HOST':'127.0.0.1',
-        'USER':'root',
-        'PASSWORD':'1234',
+        'USER':'hopewell',
+        'PASSWORD':'hope1234',
     }
 }
 
