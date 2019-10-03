@@ -1,7 +1,7 @@
 from django.db import models
 
-
 # Create your models here.
+
 class UserRole(models.Model):
     roleId=models.AutoField(primary_key=True)
     rolName = models.CharField(max_length=200, default="")
@@ -19,5 +19,4 @@ class UserSignup(models.Model):
     UserState=models.CharField(max_length=200,default="")
     isActive = models.BooleanField(default=True)
 
-a=None
 
