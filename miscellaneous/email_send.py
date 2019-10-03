@@ -4,7 +4,7 @@ import smtplib #simple  mail transfer protocol
 from email.mime.multipart import MIMEMultipart##for attacjhment
 
 from email.mime.text import MIMEText#it covertd the attachment to string ...kuki sendmail fxn k ander only string me pass hota hai like binary form me
-def sendmail(v):
+def sendmail():
 
     msg=MIMEMultipart()
 
@@ -24,15 +24,6 @@ def sendmail(v):
     text = msg.as_string()
     server.sendmail('vishul.chauhan222@gmail.com','vishul.chauhan000@gmail.com',text)
     server.quit()
-
-    x = None
-    try:
-        if x==None:
-            return "True"
-    except:
-        return "False"
-
-
 
 
 sendmail()
