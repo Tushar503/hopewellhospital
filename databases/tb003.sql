@@ -11,11 +11,9 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-DROP TABLE myuserapp_usersignup
-
 -- Dumping structure for table hopewelldb.myuserapp_usersignup
 CREATE TABLE IF NOT EXISTS `myuserapp_usersignup` (
-  `userFullName` varchar( 200) NOT NULL,
+  `userFullName` varchar(200) NOT NULL,
   `userEmail` varchar(200) NOT NULL,
   `userPassword` varchar(200) NOT NULL,
   `userMobile` varchar(200) NOT NULL,
@@ -29,6 +27,9 @@ CREATE TABLE IF NOT EXISTS `myuserapp_usersignup` (
   `userConfirmationlink` varchar(200) NOT NULL,
   `userOtp` varchar(10) NOT NULL,
   `userOtptime` varchar(200) NOT NULL,
+  `isAvailable` tinyint(1) NOT NULL,
+  `isQueue` tinyint(1) NOT NULL,
+  `userToken` varchar(200) NOT NULL,
   PRIMARY KEY (`userEmail`),
   KEY `MyUserApp_usersignup_roleId_id_f3ef3ccb_fk_MyUserApp` (`roleId_id`),
   CONSTRAINT `MyUserApp_usersignup_roleId_id_f3ef3ccb_fk_MyUserApp` FOREIGN KEY (`roleId_id`) REFERENCES `myuserapp_userrole` (`roleId`)
