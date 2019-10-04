@@ -15,7 +15,7 @@ DROP TABLE myuserapp_usersignup
 
 -- Dumping structure for table hopewelldb.myuserapp_usersignup
 CREATE TABLE IF NOT EXISTS `myuserapp_usersignup` (
-  `userFullName` varchar(200) NOT NULL,
+  `userFullName` varchar( 200) NOT NULL,
   `userEmail` varchar(200) NOT NULL,
   `userPassword` varchar(200) NOT NULL,
   `userMobile` varchar(200) NOT NULL,
