@@ -18,5 +18,10 @@ class UserSignup(models.Model):
     UserCity=models.CharField(max_length=10,default="")
     UserState=models.CharField(max_length=200,default="")
     isActive = models.BooleanField(default=True)
+    userOtp=models.CharField(max_length=10,default="")
+    userOtptime=models.CharField(max_length=200,default="")
+    userConfirmationlink=models.CharField(max_length=200,default="")
+    isVerified=models.BooleanField(default=False)
+
 
 
