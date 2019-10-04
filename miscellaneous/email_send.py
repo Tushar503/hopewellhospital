@@ -8,25 +8,34 @@ def sendmail():
 
     msg=MIMEMultipart()
 
-    msg['From']= 'vishul.chauahna222@gmail.com'
-    msg['To']='asustruelife@gmail.com'
-    msg['Subject'] = "hello "
+    msg['From']= 'sainimanraj01@gmail.com'
+    msg['To']='tusharsaini503@gmail.com'
+    msg['Subject'] = "hello frnd chai pilo"
 
     body="Welcome to Hopewell Hospital"
     msg.attach(MIMEText(body,"plain"))
+    try:
+
+       server =smtplib.SMTP("smtp.gmail.com",587)#google server se connect krn ek lie yhi address,587 port no. mailing ka...
+       #print(server)
+       server.starttls()#it starts the transferlayer security for snnding mail
+
+       server.login('sainimanraj01@gmail.com','r7015800')
+       text = msg.as_string()
+       server.sendmail('sainimanraj01@gmail.com','tusharsaini503@gmail.com',text)
+       print("email sent")
+       return True
+
+    except smtplib.SMTPException:
+        print("email is not send")
+        return False
 
 
-    server =smtplib.SMTP("smtp.gmail.com",587)#google server se connect krn ek lie yhi address,587 port no. mailing ka...
-    #print(server)
-    server.starttls()#it starts the transferlayer security for snnding mail
-
-    server.login('vishul.chauhan222@gmail.com','desire626')
-    text = msg.as_string()
-    server.sendmail('vishul.chauhan222@gmail.com','vishul.chauhan000@gmail.com',text)
-    server.quit()
-
-
+        server.quit()
 sendmail()
+
+
+
 
 
 
