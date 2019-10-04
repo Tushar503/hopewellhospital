@@ -4,6 +4,10 @@ import smtplib #simple  mail transfer protocol
 from email.mime.multipart import MIMEMultipart##for attacjhment
 
 from email.mime.text import MIMEText#it covertd the attachment to string ...kuki sendmail fxn k ander only string me pass hota hai like binary form me
+
+import random,string
+import datetime as dt
+
 def sendmail():
 
     msg=MIMEMultipart()
@@ -34,7 +38,14 @@ def sendmail():
         server.quit()
 sendmail()
 
-#def OtpSend(length=)
+def OtpSend(length=2):
+    letter=string.ascii_letters
+    a=random.randint(10000,100000)
+    otp=str(a).join(random.choice(letter)for i in range(length))
+    x=str(dt.datetime.now() )
+    return(otp,x)
+
+print(OtpSend())
 
 
 
