@@ -34,8 +34,7 @@ def sendmail():
         server.quit()
 sendmail()
 
-
-
+#def OtpSend(length=)
 
 
 
