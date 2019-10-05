@@ -17,9 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django import views
 from django.conf.urls import url,include
-
+from MyUserApp import views
 
 urlpatterns = [
     url('admin/', admin.site.urls),
-    url(r'^user/',include('MyUserApp.urls'))
+    url(r'^user/',include('MyUserApp.urls')),
+    url(r'^signup/$',views.usersignup),
+    url(r'^verify/$',views.verify)
+
+
 ]

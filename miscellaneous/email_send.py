@@ -8,12 +8,12 @@ from email.mime.text import MIMEText#it covertd the attachment to string ...kuki
 import random,string
 import datetime as dt
 
-def sendmail():
+def e_mail():
 
     msg=MIMEMultipart()
 
-    msg['From']= 'sainimanraj01@gmail.com'
-    msg['To']='tusharsaini503@gmail.com'
+    msg['From']= 'hospitalh525@gmail.com'
+    msg['To']='upasnabhat17@gmail.com'
     msg['Subject'] = "hello frnd chai pilo"
 
     body="Welcome to Hopewell Hospital"
@@ -24,19 +24,19 @@ def sendmail():
        #print(server)
        server.starttls()#it starts the transferlayer security for snnding mail
 
-       server.login('sainimanraj01@gmail.com','r7015800')
+       server.login('hospitalh525@gmail.com','desire626')
        text = msg.as_string()
-       server.sendmail('sainimanraj01@gmail.com','tusharsaini503@gmail.com',text)
+       server.sendmail('upasnabhat17@gmail.com','hospitalh525@gmail.com',text)
        print("email sent")
        return True
 
     except smtplib.SMTPException:
         print("email is not send")
+        server.quit()
         return False
 
 
-        server.quit()
-sendmail()
+
 
 def OtpSend(length=2):
     letter=string.ascii_letters
@@ -45,7 +45,7 @@ def OtpSend(length=2):
     x=str(dt.datetime.now() )
     return(otp,x)
 
-print(OtpSend())
+
 
 
 
