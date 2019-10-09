@@ -24,7 +24,9 @@ urlpatterns = [
     url(r'^user/',include('MyUserApp.urls')),
     url(r'^signup/$',views.usersignup),
     url(r'^verify/$',views.verify),
-    url(r'^login/$',views.login,name="login")
+    url(r'^login/$',views.login,name="login"),
+    url(r'^verified/$',views.verify,name="verify")
+
 
 
 ]
