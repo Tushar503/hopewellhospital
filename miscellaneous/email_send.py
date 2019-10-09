@@ -8,32 +8,32 @@ from email.mime.text import MIMEText#it covertd the attachment to string ...kuki
 import random,string
 import datetime as dt
 
-def e_mail():
+def e_mail(subject,receiver,mail):
 
     msg=MIMEMultipart()
 
     msg['From']= 'hospitalh525@gmail.com'
-    msg['To']='upasnabhat17@gmail.com'
+    msg['To']='email'
     msg['Subject'] = "hello frnd chai pilo"
-
-    body="Welcome to Hopewell Hospital"
-    msg.attach(MIMEText(body,"plain"))
+    msg.attach(MIMEText(mail,"plain"))
+    server =smtplib.SMTP("smtp.gmail.com",587)#google server se connect krn ek lie yhi address,587 port no. mailing ka...
+    #print(server)
+    server.starttls()#it starts the transferlayer security for snnding mail
     try:
-
-       server =smtplib.SMTP("smtp.gmail.com",587)#google server se connect krn ek lie yhi address,587 port no. mailing ka...
-       #print(server)
-       server.starttls()#it starts the transferlayer security for snnding mail
 
        server.login('hospitalh525@gmail.com','desire626')
        text = msg.as_string()
-       server.sendmail('upasnabhat17@gmail.com','hospitalh525@gmail.com',text)
+       server.sendmail(msg['From'],msg["To"],text)
        print("email sent")
+       server.quit()
        return True
 
     except smtplib.SMTPException:
         print("email is not send")
-        server.quit()
+
         return False
+
+
 
 
 
