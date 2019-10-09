@@ -18,7 +18,7 @@ def usersignup(request):
         f = form.save(commit=False)
         f.userFullName = request.POST["username"]
         f.userEmail = request.POST["useremail"]
-        f.userPassword = request.POST["userpassword"]
+        f.userPassword = make_password(request.POST["userpassword"])
         f.userMobile = request.POST["usermobile"]
         f.userAge = request.POST["userage"]
         f.userAddress = request.POST["useraddress"]
@@ -36,7 +36,7 @@ def usersignup(request):
         f.save()
 
 
-        email_send.e_mail("link",email,confirmationlink)
+        email_send.e_mail("hthhhf",email,confirmationlink)
 
         return render(request, "signup.html", {'success': True})
 

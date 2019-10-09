@@ -5,26 +5,27 @@
     <title>login</title>
 </head>
 <body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 <form method="post">
     {% csrf_token %}
-    {% if true %}
+   {% if wrongpw %}
     <script type="text/javascript">
-        alert('Details login sucessfully');
+        alert("Incorrect Password");
     </script>
     {% endif %}
- <label>Email</label>
+     {% if wrongem %}
+    <script type="text/javascript">
+        alert("Email Invalid");
+    </script>
+    {% endif %}
+
+
+    <label>Email</label>
   <input type="text" id="email" name="useremail"><br/>
     <label>Password</label>
   <input type="password" id="password" name="userpassword"><br/>
 
-    <input type="button" value="login">
+    <input type="submit" value="login">
+
 
 </form>
 

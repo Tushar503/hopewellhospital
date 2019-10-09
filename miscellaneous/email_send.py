@@ -8,16 +8,18 @@ from email.mime.text import MIMEText#it covertd the attachment to string ...kuki
 import random,string
 import datetime as dt
 
-def e_mail(subject,receiver,mail):
+def e_mail(subject,mail, link):
 
     msg=MIMEMultipart()
 
     msg['From']= 'hospitalh525@gmail.com'
-    msg['To']='email'
-    msg['Subject'] = "hello frnd chai pilo"
-    msg.attach(MIMEText(mail,"plain"))
+    msg['To']=mail
+    msg['Subject'] = subject
+
     server =smtplib.SMTP("smtp.gmail.com",587)#google server se connect krn ek lie yhi address,587 port no. mailing ka...
     #print(server)
+    body = link
+    msg.attach(MIMEText(body, "plain"))
     server.starttls()#it starts the transferlayer security for snnding mail
     try:
 
