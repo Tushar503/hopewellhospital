@@ -1,6 +1,8 @@
 from django.shortcuts import render,HttpResponse,redirect
 from miscellaneous import email_send,myconstants
 from MyUserApp.forms import UserSignupForm
+from MyUserApp.models import UserSignup
+from django.contrib.auth.hashers import make_password,check_password
 from Authorize import authcheck
 
 # Create your views here.
@@ -45,4 +47,24 @@ def usersignup(request):
 def verify(request):
     emailid=request.GET['useremail']
     token=request.GET['token']
+    #email=UserSignUp.objects.get()
+
+def login(request):
+    if(request.method=="POST"):
+        email=request.POST['useremail']
+        password=request.POST['userpassword']
+        try:
+            data=UserSignup.objects.get(userEmail=email)
+            dbpassword=data.userPassword
+            auth=check_password(password,dbpassword)
+            if(auth==True):
+                request.session['Authentication']=True
+                request.session['useremail'] = email
+                request.session['roleid']=data.roleId_id
+                return redirect("/signup/")
+            else:
+                return render(request,"login.html",{'wrongpw':True})
+        except:
+            return render(request,"login.html",{'wrongem':True})
+    return render(request,"login.html")
 
