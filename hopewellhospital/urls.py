@@ -23,7 +23,8 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^user/',include('MyUserApp.urls')),
     url(r'^signup/$',views.usersignup),
-    url(r'^verify/$',views.verify)
+    url(r'^verify/$',views.verify),
+    url(r'^login/$',views.login,name="login")
 
 
 ]

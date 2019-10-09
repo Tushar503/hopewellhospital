@@ -9,5 +9,7 @@ urlpatterns=[
 url(r'^index/',views.home)
 
 
+
+
 ]
 
