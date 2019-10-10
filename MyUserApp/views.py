@@ -5,6 +5,8 @@ from MyUserApp.models import UserSignup
 from django.contrib.auth.hashers import make_password,check_password
 from Authorize import authcheck
 
+
+
 # Create your views here.
 def home(request):
     return render(request,"index.html")
@@ -60,6 +62,22 @@ def verify(request):
             return render(request, "verified1.html")
     except:
         return render(request, "verified2.html")
+def damy(request):
+    try:
+        authdata=authcheck.authentication(request.session['Authentication'],request.session['roleid'],myconstants.MANAGER)
+        if(authdata==True):
+
+            return render(request, "notlogin.html")
+
+        else:
+            authinfo,message=authdata
+            if(message=="Invalid_user"):
+                return redirect("/unauthorize_ccess/")
+            elif(message=="Not_Login"):
+                return redirect("/notlogin/")
+    except:
+        return redirect("/notlogin/")
+
 
 
 
@@ -77,7 +95,7 @@ def login(request):
                 request.session['Authentication']=True
                 request.session['useremail'] = email
                 request.session['roleid']=data.roleId_id
-                return redirect("/signup/")
+                return redirect("/damy/")
             else:
                 return render(request,"login.html",{'wrongpw':True})
         except:

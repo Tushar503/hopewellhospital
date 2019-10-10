@@ -25,7 +25,8 @@ urlpatterns = [
     url(r'^signup/$',views.usersignup),
     url(r'^verify/$',views.verify),
     url(r'^login/$',views.login,name="login"),
-    url(r'^verified/$',views.verify,name="verify")
+    url(r'^verified/$',views.verify,name="verify"),
+    url(r'^damy/$',views.damy,name="damy")
 
 
 
