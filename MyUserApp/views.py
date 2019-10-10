@@ -36,16 +36,14 @@ def usersignup(request):
         f.save()
 
 
-        email_send.e_mail("hthhhf",email,confirmationlink)
+        email_send.e_mail("the",email,confirmationlink)
 
         return render(request, "signup.html", {'success': True})
 
     return render(request, "signup.html")
-
-
 def verify(request):
-    email = request.GET['useremail']
-    token = request.GET['link']
+    email = request.GET['email']
+    token = request.GET['token']
     try:
         data = UserSignup.objects.get(userEmail=email)
         dbtoken = data.userToken
@@ -53,15 +51,18 @@ def verify(request):
             updateuser = UserSignup(
                 userEmail=email,
                 userToken='',
-                userConfirmationLink='',
+                userConfirmationlink='',
                 isVerified=True
             )
-            updateuser.save(update_fields=["userToken", "userConfirmationLink", "isVerified"])
+            updateuser.save(update_fields=["userToken", "userConfirmationlink", "isVerified"])
             return render(request, "verified.html")
         else:
-            pass
+            return render(request, "verified1.html")
     except:
-        pass
+        return render(request, "verified2.html")
+
+
+
 
 
 def login(request):
