@@ -72,7 +72,7 @@ def damy(request):
         else:
             authinfo,message=authdata
             if(message=="Invalid_user"):
-                return redirect("/unauthorize_ccess/")
+                return redirect("/unauthorize_acess/")
             elif(message=="Not_Login"):
                 return redirect("/notlogin/")
     except:
