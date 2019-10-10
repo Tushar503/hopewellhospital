@@ -16,7 +16,7 @@ def usersignup(request):
         email = request.POST['useremail']
         form = UserSignupForm(request.POST)
         otp, time = email_send.OtpSend()
-        confirmationlink = "http://127.0.0.1:8000/verifyuser/?email=" + email + "&token=" + otp
+        confirmationlink = "http://127.0.0.1:8000/verified/?email=" + email + "&token=" + otp
         f = form.save(commit=False)
         f.userFullName = request.POST["username"]
         f.userEmail = request.POST["useremail"]
