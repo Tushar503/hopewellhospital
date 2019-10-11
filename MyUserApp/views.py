@@ -107,5 +107,13 @@ def notlogin(request):
 
 def unauthorised_access(request):
     return render(request,"unauthorize_access.html")
+def logout(request):
+    try:
+        request.session.pop("Authentication")
+        request.session.pop("email id")
+        request.session.pop("roleid")
+        return redirect("/login/")
+    except:
+        return redirect("/login/")
 
 
