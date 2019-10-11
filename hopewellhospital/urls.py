@@ -26,7 +26,9 @@ urlpatterns = [
     url(r'^verify/$',views.verify),
     url(r'^login/$',views.login,name="login"),
     url(r'^verified/$',views.verify,name="verify"),
-    url(r'^damy/$',views.damy,name="damy")
+    url(r'^damy/$',views.damy,name="damy"),
+    url(r'^notlogin/$',views.notlogin,name="notlogin"),
+    url(r'^unauthorized_access/$',views.unauthorised_access,name="unauthorised_access")
 
 
 

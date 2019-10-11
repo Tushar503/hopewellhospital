@@ -67,12 +67,12 @@ def damy(request):
         authdata=authcheck.authentication(request.session['Authentication'],request.session['roleid'],myconstants.MANAGER)
         if(authdata==True):
 
-            return render(request, "notlogin.html")
+            return render(request, "damy.html")
 
         else:
             authinfo,message=authdata
             if(message=="Invalid_user"):
-                return redirect("/unauthorize_acess/")
+                return redirect("/unauthorised_access/")
             elif(message=="Not_Login"):
                 return redirect("/notlogin/")
     except:
@@ -101,4 +101,11 @@ def login(request):
         except:
             return render(request,"login.html",{'wrongem':True})
     return render(request,"login.html")
+
+def notlogin(request):
+    return render(request, "notlogin.html")
+
+def unauthorised_access(request):
+    return render(request,"unauthorize_access.html")
+
 
