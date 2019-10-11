@@ -5,4 +5,6 @@ app_name='managerapp'
 
 urlpatterns=[
 
+    url(r'^manager/',views.manager,name="manager"),
+
 ]
