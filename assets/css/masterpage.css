@@ -1,6 +1,7 @@
 .nav1{margin-left:50px;
 }
-.color{background-color:#99A0A3;
+
+.color{background-color:#99A03;
        height:400px;
 
 }
@@ -12,4 +13,7 @@ left:300px;
 padding-top:50px;
 }
 .recption1{margin-left:100px;
+}
+.emrgency{position:realative;
+top:50px;
 }
