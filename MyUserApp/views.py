@@ -33,7 +33,7 @@ def usersignup(request):
         f.userConfirmationlink=confirmationlink
         f.userOtp=otp
         f.userOtptime=time
-        f.roleId_id = 1
+        f.roleId_id = 2
 
         f.save()
 
@@ -95,7 +95,15 @@ def login(request):
                 request.session['Authentication']=True
                 request.session['useremail'] = email
                 request.session['roleid']=data.roleId_id
-                return redirect("/damy/")
+                if data.roleId_id ==1:
+                  return render(request, "manager.html")
+                elif data.roleId_id==2:
+                    return render(request, "doctors.html")
+
+
+
+                #return redirect("/damy/")
+                #return render(request, "manager.html")
             else:
                 return render(request,"login.html",{'wrongpw':True})
         except:
@@ -110,10 +118,33 @@ def unauthorised_access(request):
 def logout(request):
     try:
         request.session.pop("Authentication")
-        request.session.pop("email id")
+        request.session.pop("emailid")
         request.session.pop("roleid")
         return redirect("/login/")
     except:
         return redirect("/login/")
 
+
+def changepassword(request):
+    if (request.method == "POST"):
+        currentpas = request.POST['currentpass']
+        confirmpas = request.POST['confirmpass']
+        newpas = make_password(request.POST['newpass'])
+        try:
+
+            email=request.session['useremail']
+            email_id = UserSignup.objects.get(userEmail=email)
+            oldpas = email_id.userPassword
+            auth = check_password(currentpas,oldpas)
+            auth1 = check_password(confirmpas,newpas)
+            if auth==True and auth1==True:
+
+                 updated = UserSignup(userEmail=email_id.userEmail,userPassword=newpas)
+                 updated.save(update_fields=["userPassword"])
+                 return HttpResponse("changed successfully")
+            else:
+                return render(request,'manager.html',{'old':True})
+        except:
+            return HttpResponse("not changed successfully")
+    return render(request,'changepassword.html')
 
