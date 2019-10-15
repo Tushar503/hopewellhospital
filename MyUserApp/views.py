@@ -147,4 +147,27 @@ def changepassword(request):
         except:
             return HttpResponse("not changed successfully")
     return render(request,'changepassword.html')
+def showprofile(request):
+    email = request.session['useremail']
+    data = UserSignup.objects.get(userEmail=email)
+    if request.method=="POST":
+        emailid=request.POST["email"]
+        vname=request.POST["name"]
+        vmobile=request.POST["mobile"]
+        vage=request.POST["age"]
+        vaddress=request.POST["address"]
+        vcity=request.POST["city"]
+        vstate=request.POST["state"]
+        updatedata=UserSignup(userEmail=emailid,userFullName=vname,userMobile=vmobile,userAge=vage,userAddress=vaddress,userCity=vcity,userState=vstate)
+        updatedata.save(
+            update_fields=["userFullName",
+                           "userMobile",
+                           "userAge",
+                           "userAddress",
+                           "userCity",
+                           "userState"
+                           ])
+        return render(request,"viewprofile.html",{ 'taru':True, 'd1': data})
+    return render(request, "viewprofile.html", {'d1': data})
+
 

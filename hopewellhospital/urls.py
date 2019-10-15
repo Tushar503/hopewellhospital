@@ -33,7 +33,9 @@ urlpatterns = [
     url(r'^notlogin/$',views.notlogin,name="notlogin"),
     url(r'^unauthorized_access/$',views.unauthorised_access,name="unauthorised_access"),
     url(r'^logout/$',views.logout,name="logout"),
-    url(r'^changepassword/$',views.changepassword,name="changep")
+    url(r'^changepassword/$',views.changepassword,name="changep"),
+    url(r'^showprofile/$',views.showprofile,name="profile")
+
 
 
 
