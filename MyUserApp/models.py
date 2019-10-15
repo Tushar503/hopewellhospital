@@ -17,6 +17,7 @@ class UserSignup(models.Model):
     userAddress=models.CharField(max_length=500,default="")
     userCity=models.CharField(max_length=10,default="")
     userState=models.CharField(max_length=200,default="")
+    userImage = models.CharField(max_length=200, default="")
     isActive = models.BooleanField(default=True)
     userOtp=models.CharField(max_length=10,default="")
     userOtptime=models.CharField(max_length=200,default="")
@@ -25,6 +26,7 @@ class UserSignup(models.Model):
     isAvailable=models.BooleanField(default=True)
     isQueue=models.BooleanField(default=False)
     isVerified=models.BooleanField(default=False)
+
 
 
 

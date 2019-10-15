@@ -14,6 +14,7 @@ class UserSignupForm(forms.ModelForm):
                  "userAddress",
                  "userCity",
                  "userState",
+                 "userImage",
                  "userOtp",
                  "userOtptime",
                  "userConfirmationlink",
