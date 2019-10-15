@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>jii</title></head>
+<body>
+<form method="POST">
+    {% csrf_token %}
+    {% if taru %}
+    <script type="text/javascript">
+        alert('successfully registered');
+    </script>
+     {% endif %}
+    <table class="table table-striped table-dark">
+        <tbody>
+        <tr>
+      <label>fullname</label>
+            <input type="text" value="{{d1.userFullName}}" name="name"  ><br/>
+            <label>Email</label>
+      <input type="text" value="{{d1.userEmail}}" name="email" readonly ><br/>
+      <label>Mobile</label>
+            <input type="text" value="{{d1.userMobile}}"  name="mobile"  ><br/>
+        <label>Age</label>
+            <input type="text" value="{{d1.userAge}}" name="age" ><br/>
+            <label>Address</label>
+            <input type="text" value="{{d1.userAddress}}" name="address" ><br/>
+            <label>City</label>
+            <input type="text" value="{{d1.userCity}}" name="city" ><br/>
+            <label>State</label>
+            <input type="text" value="{{d1.userState}}" name="state"  ><br/>
+
+            <input type="submit"  value="update">
+</tr>
+    </tbody>
+</table>
+</form>
+</body>
+</html>

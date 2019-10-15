@@ -195,5 +195,5 @@ def updateprofile(request):
                            ])
         return render(request, "updateprofile.html", {'taru': True, 'd1': data})
     return render(request, "updateprofile.html", {'d1': data})
-
+def:
 
