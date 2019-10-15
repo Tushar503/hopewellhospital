@@ -34,7 +34,8 @@ urlpatterns = [
     url(r'^unauthorized_access/$',views.unauthorised_access,name="unauthorised_access"),
     url(r'^logout/$',views.logout,name="logout"),
     url(r'^changepassword/$',views.changepassword,name="changep"),
-    url(r'^showprofile/$',views.showprofile,name="profile")
+    url(r'^showprofile/$',views.showprofile,name="profile"),
+    url(r'^updateprofile/$',views.updateprofile,name="profile")
 
 
 
