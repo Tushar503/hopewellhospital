@@ -33,7 +33,7 @@ def usersignup(request):
         f.userConfirmationlink=confirmationlink
         f.userOtp=otp
         f.userOtptime=time
-        f.roleId_id = 2
+        f.roleId_id= 2
 
         f.save()
 
@@ -67,7 +67,7 @@ def damy(request):
         authdata=authcheck.authentication(request.session['Authentication'],request.session['roleid'],myconstants.MANAGER)
         if(authdata==True):
 
-            return render(request, "damy.html")
+            return render(request, "manager.html")
 
         else:
             authinfo,message=authdata
@@ -133,7 +133,13 @@ def changepassword(request):
         try:
 
             email=request.session['useremail']
+            email = request.POST['email']
+            form = UserSignupForm(request.POST)
+            otp, time = email_send.OtpSend()
+            confirmationlink = "your password is changed succesfully"
             email_id = UserSignup.objects.get(userEmail=email)
+
+
             oldpas = email_id.userPassword
             auth = check_password(currentpas,oldpas)
             auth1 = check_password(confirmpas,newpas)
@@ -141,6 +147,7 @@ def changepassword(request):
 
                  updated = UserSignup(userEmail=email_id.userEmail,userPassword=newpas)
                  updated.save(update_fields=["userPassword"])
+                 email_send.e_mail("passwordchanged", email, confirmationlink)
                  return HttpResponse("changed successfully")
             else:
                 return render(request,'manager.html',{'old':True})
@@ -176,6 +183,11 @@ def updateprofile(request):
     email = request.session['useremail']
     data = UserSignup.objects.get(userEmail=email)
     if request.method == "POST":
+        email = request.POST['email']
+        form = UserSignupForm(request.POST)
+        otp, time = email_send.OtpSend()
+        confirmationlink = "your profile is changed succesfully"
+
         emailid = request.POST["email"]
         vname = request.POST["name"]
         vmobile = request.POST["mobile"]
@@ -193,6 +205,7 @@ def updateprofile(request):
                            "userCity",
                            "userState"
                            ])
+        email_send.e_mail("profilechanged", email, confirmationlink)
         return HttpResponse( "Profile update", {'tarun':True, 'd2': data})
     return render(request, "updateprofile.html", {'tarun':True,'d2': data})
 
