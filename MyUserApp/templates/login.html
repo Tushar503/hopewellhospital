@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>login</title>
-</head>
-<body>
+
+{% extends 'masterpage.html' %}
+{% block content %}
 <form method="post">
     {% csrf_token %}
    {% if wrongpw %}
@@ -28,7 +24,4 @@
 
 
 </form>
-
-
-</body>
-</html>
+{% endblock %}
