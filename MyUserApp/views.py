@@ -193,7 +193,7 @@ def updateprofile(request):
                            "userCity",
                            "userState"
                            ])
-        return render(request, "updateprofile.html", {'taru': True, 'd1': data})
-    return render(request, "updateprofile.html", {'d1': data})
-def:
+        return render(request, "updateprofile.html", {'tarun': True, 'd2': data})
+    return render(request, "updateprofile.html", {'d2': data})
+
 
