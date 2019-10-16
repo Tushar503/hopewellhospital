@@ -19,17 +19,17 @@ def usersignup(request):
         email = request.POST['useremail']
         otp, time = email_send.OtpSend()
         confirmationlink = "http://127.0.0.1:8000/verified/?email=" + email + "&token=" + otp
+        image = None
         try:
-             if request.FILES["image"]:
+             if request.FILES:
                my_file = request.FILES["image"]
                fs = FileSystemStorage()
                file_name = fs.save(my_file.name,my_file)
                image = fs.url(file_name)
                image = my_file.name
+               #print(image)
         except:
             pass
-
-
         f = form.save(commit=False)
         f.userFullName = request.POST["username"]
         f.userEmail = request.POST["useremail"]
@@ -39,7 +39,7 @@ def usersignup(request):
         f.userAddress = request.POST["useraddress"]
         f.userCity = request.POST["usercity"]
         f.userState = request.POST["userstate"]
-        f.userImage=image
+        f.userImage = image
         f.isActive = True
         f.isAvailable=True
         f.isQueue=False
@@ -147,10 +147,10 @@ def changepassword(request):
         try:
 
             email=request.session['useremail']
-            email = request.POST['email']
-            form = UserSignupForm(request.POST)
-            otp, time = email_send.OtpSend()
-            confirmationlink = "your password is changed succesfully"
+            #email = request.POST['email']
+            #form = UserSignupForm(request.POST)
+            #otp, time = email_send.OtpSend()
+            #confirmationlink = "your password is changed succesfully"
             email_id = UserSignup.objects.get(userEmail=email)
 
 
@@ -161,7 +161,8 @@ def changepassword(request):
 
                  updated = UserSignup(userEmail=email_id.userEmail,userPassword=newpas)
                  updated.save(update_fields=["userPassword"])
-                 email_send.e_mail("passwordchanged", email, confirmationlink)
+                 #email_send.e_mail("passwordchanged", email)
+                 #email_send.e_mail("passwordchanged", email, confirmationlink)
                  return HttpResponse("changed successfully")
             else:
                 return render(request,'manager.html',{'old':True})
