@@ -16,9 +16,13 @@ def departmentadd(request):
         return render(request, "department.html", {'success': True})
 
     return render(request, "department.html")
+
+
 def departmentview(request):
     data=Department.objects.all()
     return render(request,"departmentview.html",{'success': True,'d2':data})
+
+
 def departmentupdate(request):
     if request.method=="POST":
         depttname = request.POST["department"]
@@ -27,6 +31,13 @@ def departmentupdate(request):
             update_fields=["depttName"]
         )
         return render(request,"departmentupdate.html",{'success': True, 'd1':True})
+
+    def deletedepartment(request):
+        depttid = request.GET["id"]
+        data = Department.objects.get(depttId=depttid)
+        data.delete()
+        return render("departmentview.html")
+
 
 
 
