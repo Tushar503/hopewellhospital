@@ -82,7 +82,7 @@ def damy(request):
         authdata=authcheck.authentication(request.session['Authentication'],request.session['roleid'],myconstants.MANAGER)
         if(authdata==True):
 
-            return redirect("/manager/manager/")
+            return redirect("/manager/")
 
         else:
             authinfo,message=authdata

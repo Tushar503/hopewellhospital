@@ -41,6 +41,7 @@ def addstaff(request):
 
         f.userPost=request.POST["post"]
 
+
         f.userImage = image
         f.isActive = True
         f.isAvailable = True

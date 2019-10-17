@@ -1,10 +1,27 @@
 from django.shortcuts import render,HttpResponse,redirect
 from managerapp.forms import DepartmentForm
 from managerapp.models import Department
+from Authorize import authcheck
+from miscellaneous import email_send,myconstants
 
 # Create your views here.
 def manager(request):
-    return render(request,"manager.html")
+    try:
+        authdata = authcheck.authentication(request.session['Authentication'], request.session['roleid'],
+                                            myconstants.MANAGER)
+        if (authdata == True):
+
+            return render(request,"manager.html")
+
+        else:
+            authinfo, message = authdata
+            if (message == "Invalid_user"):
+                return redirect("/user/unauthorised_access/")
+            elif (message == "Not_Login"):
+                return redirect("/notlogin/")
+    except:
+        return redirect("/notlogin/")
+
 
 def departmentadd(request):
     if request.method=="POST":
@@ -24,16 +41,18 @@ def departmentview(request):
 
 
 def departmentupdate(request):
-    if request.method=="POST":
 
-        depttid=Department.objects.get("depttId")
-        depttname = request.POST["department"]
-        updatedata=Department(depttName=depttname)
-        updatedata.save(
-            update_fields=["depttName"]
-        )
-        return render(request,"departmentupdate.html",{'success': True, 'd1':True})
-    return render(request, "departmentupdate.html", {'success': True, 'd1': True})
+        depttid=request.GET["id"]
+        data=Department.objects.get(depttId=depttid)
+
+        if request.method == "POST":
+            depttname = request.POST["department"]
+            updatedata=Department(depttId=depttid,depttName=depttname)
+            updatedata.save(
+            update_fields=["depttName"])
+            return redirect("/manager/departmentview/")
+        return render(request,"departmentupdate.html",{'success': True, 'd1':data})
+
 
 
 def deletedepartment(request):
