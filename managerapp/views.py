@@ -32,7 +32,7 @@ def departmentupdate(request):
         )
         return render(request,"departmentupdate.html",{'success': True, 'd1':True})
 
-    def deletedepartment(request):
+def deletedepartment(request):
         depttid = request.GET["id"]
         data = Department.objects.get(depttId=depttid)
         data.delete()
