@@ -24,3 +24,4 @@ class UserSignupForm(forms.ModelForm):
                  "isVerified",
                  "isActive",
                  ]
+
