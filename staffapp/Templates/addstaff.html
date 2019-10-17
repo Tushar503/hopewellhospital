@@ -1,0 +1,80 @@
+
+{% extends 'masterpage.html' %}
+
+{% block content %}
+<div class="box" style=" background:url(/assets/images/feedback.png);  background-repeat: no-repeat; width:500px; height:800px; position:relative; left:50px; top:70px;">
+
+
+        <div class="box1" style="width:600px; height:600px; position:relative; left:600px;">
+            <h1 style="text-align:center;">Add Staff Here</h1>
+            </br>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if success %}
+    <script type="text/javascript">
+        alert('Details Updated Successfully');
+
+    </script>
+    {% endif %}
+      <div class="form-group">
+    <label for="name">Full Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter Full Name" name="username">
+  </div>
+<br class="hero" style="position:relative; "  >
+      <div class="form-row" >
+        <div class="form-group col-md-6">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter Your mail" name="useremail">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter Your Password" name="userpassword" >
+        </div>
+      </div>
+    <div class="form-row" >
+         <div class="form-group col-md-6">
+            <label for="mobile">Mobile</label>
+            <input type="text" class="form-control" id="mobile" placeholder="Enter Mobile Number" name="usermobile">
+          </div>
+            <div class="form-group col-md-6">
+                <label for="age">Age</label>
+                <input type="text" class="form-control" id="age" placeholder="Enter your Age" name="userage">
+            </div>
+    </div>
+
+    <div>
+        <label for="image">ProfileImage</label>
+  <input type="file" id="image" name="image">
+
+</div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" class="form-control" id="address" placeholder="Enter Your Full Address" name="useraddress">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city" name="usercity" placeholder="Enter City Name">
+        </div>
+
+
+        <div class="form-group col-md-6">
+          <label for="state">State</label>
+          <input type="text" class="form-control" id="state" name="userstate" placeholder="Enter State Name">
+        </div>
+
+      </div>
+</br>
+
+      <input  type="submit" class="btn btn-primary" value="Submit" style="align:center;">
+
+
+</form>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
