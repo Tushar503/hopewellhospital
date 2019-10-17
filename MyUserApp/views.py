@@ -82,12 +82,12 @@ def damy(request):
         authdata=authcheck.authentication(request.session['Authentication'],request.session['roleid'],myconstants.MANAGER)
         if(authdata==True):
 
-            return redirect("/manager/")
+            return redirect("/manager/manager/")
 
         else:
             authinfo,message=authdata
             if(message=="Invalid_user"):
-                return redirect("/unauthorised_access/")
+                return redirect("/user/unauthorised_access/")
             elif(message=="Not_Login"):
                 return redirect("/notlogin/")
     except:
@@ -111,7 +111,7 @@ def login(request):
                 request.session['useremail'] = email
                 request.session['roleid']=data.roleId_id
                 if data.roleId_id ==1:
-                    return redirect("/damy/")
+                    return redirect("/user/damy/")
                 elif data.roleId_id==2:
                     return render(request, "doctor.html")
 
@@ -138,8 +138,7 @@ def logout(request):
         return redirect("/login/")
     except:
         return redirect("/login/")
-def manager(request):
-    return render(request,"manager.html")
+
 
 
 
@@ -164,7 +163,7 @@ def changepassword(request):
 
                  return HttpResponse("changed successfully")
             else:
-                return redirect("/manager/",{'old':True})
+                return redirect("/manager/manager/",{'old':True})
         except:
             return HttpResponse("not changed successfully")
 
