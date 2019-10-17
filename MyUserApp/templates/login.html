@@ -13,15 +13,21 @@
         alert("Email Invalid");
     </script>
     {% endif %}
+<div class="box2" style="width:550px; position:relative; left:550px; top:20px;">
+<div class="form-row">
+         <div class="form-group col-md-6">
+            <label style="font-weight:bold;">Email</label>
+            <input type="text" class="form-control" id="email"  name="useremail" placeholder="Enter Your Email" >
+          </div>
+</div>
+    <div class="form-row">
+         <div class="form-group col-md-6">
+            <label style="font-weight:bold;">Password</label>
+            <input type="text" class="form-control" id="password"  name="userpassword" placeholder="Enter Your Password" >
+          </div>
+</div>
 
-
-    <label>Email</label>
-  <input type="text" id="email" name="useremail"><br/>
-    <label>Password</label>
-  <input type="password" id="password" name="userpassword"><br/>
-
-    <input type="submit" value="login">
-
-
+     <input  type="submit" class="btn btn-primary" value="Login">
+</div>
 </form>
 {% endblock %}
