@@ -163,7 +163,7 @@ def changepassword(request):
 
                  return HttpResponse("changed successfully")
             else:
-                return redirect("/manager/manager/",{'old':True})
+                return redirect("/manager/",{'old':True})
         except:
             return HttpResponse("not changed successfully")
 

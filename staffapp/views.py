@@ -4,10 +4,15 @@ from staffapp.forms import StaffForm
 from staffapp.models import Staff
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.hashers import make_password,check_password
+from managerapp.forms import DepartmentForm
+from managerapp.models import Department
+
 from Authorize import authcheck
 
 def addstaff(request):
+    dept = Department.objects.all()
     if request.method == "POST":
+
 
         email = request.POST['useremail']
         form = StaffForm(request.POST)
@@ -33,15 +38,19 @@ def addstaff(request):
         f.userAddress = request.POST["useraddress"]
         f.userCity = request.POST["usercity"]
         f.userState = request.POST["userstate"]
+
+        f.userPost=request.POST["post"]
+
         f.userImage = image
         f.isActive = True
         f.isAvailable = True
         f.isQueue = False
+
         #f.userToken = otp
         #f.userConfirmationlink = confirmationlink
         #f.userOtp = otp
         #f.userOtptime = time
-        f.depttId_id = 1
+
 
         f.save()
 
@@ -49,5 +58,5 @@ def addstaff(request):
 
         return render(request, "addstaff.html", {'success': True})
 
-    return render(request, "addstaff.html")
+    return render(request, "addstaff.html",{'d':dept})
 

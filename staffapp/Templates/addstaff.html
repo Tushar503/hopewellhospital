@@ -15,7 +15,26 @@
         alert('Details Updated Successfully');
 
     </script>
+
     {% endif %}
+    <div class="form-group">
+    <label for="name">Select Department</label>
+
+        <select name="deptid" class="form-control">
+            <option>Select Department</option>
+            {% if d %}
+    {% for i in d %}
+
+            <option value="{{ i.depttId }}">{{i.depttName}}</option>
+    {% endfor %}
+            {% else %}
+            <option value="-1">No Department Found</option>
+    {% endif %}
+
+        </select>
+  </div>
+
+
       <div class="form-group">
     <label for="name">Full Name</label>
     <input type="text" class="form-control" id="name" placeholder="Enter Full Name" name="username">
@@ -63,6 +82,11 @@
           <label for="state">State</label>
           <input type="text" class="form-control" id="state" name="userstate" placeholder="Enter State Name">
         </div>
+            <div class="form-group">
+    <label for="name">Post</label>
+    <input type="text" class="form-control" id="post" placeholder="post" name="post  ">
+  </div>
+
 
       </div>
 </br>

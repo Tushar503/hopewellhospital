@@ -5,7 +5,7 @@ app_name='managerapp'
 
 urlpatterns=[
 
-    url(r'^manager/$', views.manager, name="manager"),
+    url(r'^$', views.manager, name="manager"),
     url(r'^department/$',views.departmentadd, name="department"),
     url(r'^departmentview/$',views.departmentview,name="deparmentview"),
     url(r'departmentupdate/$',views.departmentupdate,name="departmentupdate"),
