@@ -1,0 +1,32 @@
+{% extends 'masterpage.html' %}
+{% block content %}
+
+<div class="hello" style="position:relative; left:650px;">
+    <h1 style="text-align:center;">Update Department</h1>
+<form method="post">
+	{% csrf_token %}
+    {% if success %}
+    <script type="text/javascript">
+        alert('Details Updated Successfully');
+
+    </script>
+    {% endif %}
+
+	<div>
+		<select name="department">
+			<option value="Cardiology">Cardiology</option>
+			<option value="Radiology">Radiology</option>
+			<option value="Brain & Spine">Brain & Spine</option>
+		</select>
+	</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+     <input  type="submit" class="btn btn-primary" value="Update">
+</form>
+</div>
+{% endblock %}
