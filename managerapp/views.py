@@ -37,6 +37,7 @@ def deletedepartment(request):
         data = Department.objects.get(depttId=depttid)
         data.delete()
         return render("departmentview.html")
+#def
 
 
 
