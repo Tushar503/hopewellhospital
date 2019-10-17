@@ -25,18 +25,22 @@ def departmentview(request):
 
 def departmentupdate(request):
     if request.method=="POST":
+
+        depttid=Department.objects.get("depttId")
         depttname = request.POST["department"]
         updatedata=Department(depttName=depttname)
         updatedata.save(
             update_fields=["depttName"]
         )
         return render(request,"departmentupdate.html",{'success': True, 'd1':True})
+    return render(request, "departmentupdate.html", {'success': True, 'd1': True})
+
 
 def deletedepartment(request):
         depttid = request.GET["id"]
         data = Department.objects.get(depttId=depttid)
         data.delete()
-        return render("departmentview.html")
+        return redirect("/manager/departmentview/")
 
 
 
