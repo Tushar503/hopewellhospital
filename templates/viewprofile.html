@@ -1,37 +1,55 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>jii</title></head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/assets/css/update.css">
+</head>
 <body>
-<form method="POST">
-    {% csrf_token %}
-    {% if taru %}
-    <script type="text/javascript">
-    </script>
-     {% endif %}
+<!-- this is the markup. you can change the details (your own name, your own avatar etc.) but don’t change the basic structure! -->
 
-    <table class="table table-striped table-dark">
-        <tbody>
-        <tr>
-      <label>fullname</label>
-            <input type="text" value="{{d1.userFullName}}" name="name" readonly ><br/>
-            <label>Email</label>
-      <input type="text" value="{{d1.userEmail}}" name="useremail" readonly ><br/>
-      <label>Mobile</label>
-            <input type="text" value="{{d1.userMobile}}"  name="mobile" readonly ><br/>
-        <label>Age</label>
-            <input type="text" value="{{d1.userAge}}" name="age" readonly ><br/>
-            <label>Address</label>
-            <input type="text" value="{{d1.userAddress}}" name="address" readonly ><br/>
-            <label>City</label>
-            <input type="text" value="{{d1.userCity}}" name="city" readonly ><br/>
-            <label>State</label>
-            <input type="text" value="{{d1.userState}}" name="state" readonly ><br/>
+<aside class="profile-card" >
+
+    <header>
+
+        <!-- here’s the avatar -->
+        <a href="#">
+        <img src='/media/{{d1.userImage}}'width="120" height="120">
 
 
-            <button><a href="/updateprofile/">edit</a></button>
-</tr>
-    </tbody>
-</table>
-</form>
+        </a>
+
+        <!-- the username -->
+        <h1>{{d1.userFullName}}</h1>
+
+        <!-- and role or location -->
+        <h2>manager</h2>
+
+    </header>
+
+    <!-- bit of a bio; who are you? -->
+    <div class="profile-bio">
+
+          <p><b>Email:</b>{{d1.userEmail}}
+          <p><b>Mobile</b>:{{d1.userMobile}}</p>
+          <p><b>Age:</b>{{d1.userAge}}</p>
+          <p><b>Address:</b>{{d1.userAddress}}</p>
+          <p><b>city:</b>{{d1.userCity}}</p>
+          <p><b>State:</b>{{d1.userState}}</p>
+
+          <p><a class="btn btn-lg btn-primary" href="/updateprofile/" role="button">edit</a></p>
+
+
+
+
+
+
+    </div>
+
+
+
+</aside>
+
 </body>
 </html>

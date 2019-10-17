@@ -18,6 +18,7 @@ def usersignup(request):
         form = UserSignupForm(request.POST)
         email = request.POST['useremail']
         otp, time = email_send.OtpSend()
+
         confirmationlink = "http://127.0.0.1:8000/verified/?email=" + email + "&token=" + otp
         image = None
         try:
@@ -47,7 +48,7 @@ def usersignup(request):
         f.userConfirmationlink=confirmationlink
         f.userOtp=otp
         f.userOtptime=time
-        f.roleId_id= 2
+        f.roleId_id= 1
 
         f.save()
 
@@ -81,7 +82,7 @@ def damy(request):
         authdata=authcheck.authentication(request.session['Authentication'],request.session['roleid'],myconstants.MANAGER)
         if(authdata==True):
 
-            return render(request, "manager.html")
+            return redirect("/manager/")
 
         else:
             authinfo,message=authdata
@@ -110,18 +111,18 @@ def login(request):
                 request.session['useremail'] = email
                 request.session['roleid']=data.roleId_id
                 if data.roleId_id ==1:
-                  return render(request, "manager.html")
+                    return redirect("/damy/")
                 elif data.roleId_id==2:
-                    return render(request, "manager.html")
+                    return render(request, "doctor.html")
 
 
 
-                #return redirect("/damy/")
+
                 #return render(request, "manager.html")
             else:
                 return render(request,"login.html",{'wrongpw':True})
         except:
-            return render(request,"login.html",{'wrongem':True})
+             return render(request, "login.html",{'wrongem':True})
     return render(request,"login.html")
 
 def notlogin(request):
@@ -137,6 +138,9 @@ def logout(request):
         return redirect("/login/")
     except:
         return redirect("/login/")
+def manager(request):
+    return render(request,"manager.html")
+
 
 
 def changepassword(request):
@@ -147,10 +151,6 @@ def changepassword(request):
         try:
 
             email=request.session['useremail']
-            #email = request.POST['email']
-            #form = UserSignupForm(request.POST)
-            #otp, time = email_send.OtpSend()
-            #confirmationlink = "your password is changed succesfully"
             email_id = UserSignup.objects.get(userEmail=email)
 
 
@@ -161,13 +161,14 @@ def changepassword(request):
 
                  updated = UserSignup(userEmail=email_id.userEmail,userPassword=newpas)
                  updated.save(update_fields=["userPassword"])
-                 #email_send.e_mail("passwordchanged", email)
-                 #email_send.e_mail("passwordchanged", email, confirmationlink)
+
                  return HttpResponse("changed successfully")
             else:
-                return render(request,'manager.html',{'old':True})
+                return redirect("/manager/",{'old':True})
         except:
             return HttpResponse("not changed successfully")
+
+
     return render(request,'changepassword.html')
 
 
@@ -202,6 +203,15 @@ def updateprofile(request):
         form = UserSignupForm(request.POST)
         otp, time = email_send.OtpSend()
         confirmationlink = "your profile is changed succesfully"
+        try:
+            if request.FILES["image"]:
+                my_file = request.FILES["image"]
+                fs = FileSystemStorage()
+                file_name = fs.save(my_file.name, my_file)
+                photo = fs.url(file_name)
+                photo = my_file.name
+        except:
+            pass
 
         emailid = request.POST["email"]
         vname = request.POST["name"]
@@ -210,15 +220,18 @@ def updateprofile(request):
         vaddress = request.POST["address"]
         vcity = request.POST["city"]
         vstate = request.POST["state"]
+        vimage = photo
         updatedata = UserSignup(userEmail=emailid, userFullName=vname, userMobile=vmobile, userAge=vage,
-                                userAddress=vaddress, userCity=vcity, userState=vstate)
+                                userAddress=vaddress, userCity=vcity, userState=vstate,userImage=vimage)
         updatedata.save(
             update_fields=["userFullName",
                            "userMobile",
                            "userAge",
                            "userAddress",
                            "userCity",
-                           "userState"
+                           "userState",
+                           "userImage"
+
                            ])
         email_send.e_mail("profilechanged", email, confirmationlink)
         return HttpResponse( "Profile update", {'tarun':True, 'd2': data})
