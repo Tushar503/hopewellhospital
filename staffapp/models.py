@@ -11,6 +11,7 @@ class Staff(models.Model):
     userPassword = models.CharField(max_length=200, default="")
     userMobile = models.CharField(max_length=200, default="")
     userAge = models.CharField(max_length=10, default="")
+    userPost=models.CharField(max_length=200, default="")
     userAddress = models.CharField(max_length=500, default="")
     userCity = models.CharField(max_length=10, default="")
     userState = models.CharField(max_length=200, default="")
