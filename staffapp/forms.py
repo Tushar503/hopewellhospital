@@ -10,7 +10,7 @@ class StaffForm(forms.ModelForm):
                  "userPassword",
                  "userMobile",
                  "userAge",
-                 "userPost"
+                 "userPost",
                  "userAddress",
                  "userCity",
                  "userState",

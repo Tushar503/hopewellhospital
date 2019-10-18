@@ -39,17 +39,15 @@ def addstaff(request):
         f.userCity = request.POST["usercity"]
         f.userState = request.POST["userstate"]
         f.userPost=request.POST["post"]
-
-
         f.userImage = image
         f.isActive = True
         f.isAvailable = True
         f.isQueue = False
 
-        #f.userToken = otp
-        #f.userConfirmationlink = confirmationlink
-        #f.userOtp = otp
-        #f.userOtptime = time
+        f.userToken = ""
+        f.userOtp = ""
+        f.userOtptime = ""
+        f.depttId_id=request.POST["deptid"]
 
 
         f.save()
