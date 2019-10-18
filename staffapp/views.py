@@ -26,7 +26,7 @@ def addstaff(request):
                file_name = fs.save(my_file.name,my_file)
                image = fs.url(file_name)
                image = my_file.name
-               #print(image)
+
         except:
             pass
         f = form.save(commit=False)
@@ -38,7 +38,6 @@ def addstaff(request):
         f.userAddress = request.POST["useraddress"]
         f.userCity = request.POST["usercity"]
         f.userState = request.POST["userstate"]
-
         f.userPost=request.POST["post"]
 
 

@@ -77,21 +77,7 @@ def verify(request):
             return render(request, "verified1.html")
     except:
         return render(request, "verified2.html")
-def damy(request):
-    try:
-        authdata=authcheck.authentication(request.session['Authentication'],request.session['roleid'],myconstants.MANAGER)
-        if(authdata==True):
 
-            return redirect("/manager/")
-
-        else:
-            authinfo,message=authdata
-            if(message=="Invalid_user"):
-                return redirect("/user/unauthorised_access/")
-            elif(message=="Not_Login"):
-                return redirect("/notlogin/")
-    except:
-        return redirect("/notlogin/")
 
 
 
@@ -111,7 +97,7 @@ def login(request):
                 request.session['useremail'] = email
                 request.session['roleid']=data.roleId_id
                 if data.roleId_id ==1:
-                    return redirect("/user/damy/")
+                    return redirect("/manager/")
                 elif data.roleId_id==2:
                     return render(request, "doctor.html")
 
