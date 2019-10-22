@@ -64,6 +64,3 @@ def deletedepartment(request):
 
 
 
-
-
-

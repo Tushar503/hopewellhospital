@@ -9,4 +9,16 @@ class DepartmentForm(forms.ModelForm):
                    "isActive",
                    ]
 
+# class Loginrecordsform(forms.ModelForm):
+#     class Meta:
+#         model = Loginrecords
+#         exclude = ["loginId",
+#                    "loginTime",
+#                    "logoutTime",
+#                    "userId",
+#                    "ip_address",
+#                    "mac_address",
+#                    ]
+
+
 
