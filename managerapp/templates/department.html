@@ -1,6 +1,13 @@
-{% extends 'masterpage.html' %}
+{% extends 'dashboard_master.html' %}
 {% block content %}
 
+
+
+
+
+
+<div class="col" style="position:relative;left:400px;">
+	 <h1>DEPARTMENTS</h1><br/>
 
 <form method="post">
 	{% csrf_token %}
@@ -10,6 +17,11 @@
 
     </script>
     {% endif %}
+
+
+
+
+
 
 	<div>
 		<select name="department">
@@ -23,10 +35,8 @@
 
 <br/>
 <br/>
-<br/>
-<br/>
-<br/>
 
      <input  type="submit" class="btn btn-primary" value="Submit">
 </form>
+</div>
 {% endblock %}

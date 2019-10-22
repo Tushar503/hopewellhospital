@@ -1,13 +1,16 @@
-{% extends 'masterpage.html' %}
+{% extends 'dashboard_master.html' %}
 {% block content %}
 
+<div class="col-md-10" style="position:relative;left:100px;">
 <table class="table table-striped table-dark">
   <thead>
     <tr>
-      <th scope="col">S.No</th>
+
       <th scope="col">departmentid</th>
       <th scope="col">departmentname</th>
       <th scope="col">active</th>
+      <th scope="col">action</th>
+      <th scope="col">action</th>
 
     </tr>
   </thead>
@@ -16,7 +19,6 @@
     {% for i in d2 %}
     <tbody>
     <tr>
-      <th scope="row">1</th>
         <td>{{i.depttId}}</td>
         <td>{{i.depttName}}</td>
         <td>{{i.isActive}}</td>
@@ -31,6 +33,7 @@
     {% endif %}
 
 </table>
+</div>
 
 
 

@@ -1,17 +1,23 @@
 from django.shortcuts import render,HttpResponse,redirect
 from managerapp.forms import DepartmentForm
 from managerapp.models import Department
+from MyUserApp.forms import UserSignupForm
+from MyUserApp.models import UserSignup
+
 from Authorize import authcheck
 from miscellaneous import email_send,myconstants
 
 # Create your views here.
 def manager(request):
+
+
     try:
         authdata = authcheck.authentication(request.session['Authentication'], request.session['roleid'],
                                             myconstants.MANAGER)
         if (authdata == True):
-
-            return render(request,"manager.html")
+            email = request.session['useremail']
+            data = UserSignup.objects.get(userEmail=email)
+            return render(request,"manager.html",{'d2':data})
 
         else:
             authinfo, message = authdata
@@ -21,6 +27,7 @@ def manager(request):
                 return redirect("/notlogin/")
     except:
         return redirect("/notlogin/")
+
 
 
 def departmentadd(request):
