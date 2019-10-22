@@ -4,7 +4,11 @@ from MyUserApp.forms import UserSignupForm
 from MyUserApp.models import UserSignup
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.hashers import make_password,check_password
+from managerapp.models import Loginrecords
+from managerapp.forms import LoginrecordsForm
 from Authorize import authcheck
+import datetime as dt
+import uuid,socket
 
 
 
@@ -96,6 +100,17 @@ def login(request):
                 request.session['Authentication']=True
                 request.session['useremail'] = email
                 request.session['roleid']=data.roleId_id
+                form=LoginrecordsForm(request.POST)
+                f = form.save(commit=False)
+                f.loginTime= dt.datetime.now()
+                f.mac_address = hex(uuid.getnode())
+                host_name=socket.gethostname()
+                f.ip_address=socket.gethostbyname(host_name)
+                f.save()
+
+
+
+
                 if data.roleId_id ==1:
                     return redirect("/manager/")
                 elif data.roleId_id==2:
@@ -121,6 +136,7 @@ def logout(request):
         request.session.pop("Authentication")
         request.session.pop("emailid")
         request.session.pop("roleid")
+
         return redirect("/login/")
     except:
         return redirect("/login/")
@@ -222,4 +238,5 @@ def updateprofile(request):
         return HttpResponse( "Profile update", {'tarun':True, 'd2': data})
     return render(request, "updateprofile.html", {'tarun':True,'d2': data})
 
-
+def contactus(request):
+    return render(request, 'contactus.html')

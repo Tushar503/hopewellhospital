@@ -14,6 +14,7 @@ def addstaff(request):
     if request.method == "POST":
 
 
+
         email = request.POST['useremail']
         form = StaffForm(request.POST)
         email = request.POST['useremail']

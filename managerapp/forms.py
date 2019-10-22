@@ -1,5 +1,6 @@
 from django import forms
 from managerapp.models import Department
+from managerapp.models import Loginrecords
 
 class DepartmentForm(forms.ModelForm):
     class Meta:
@@ -9,16 +10,16 @@ class DepartmentForm(forms.ModelForm):
                    "isActive",
                    ]
 
-# class Loginrecordsform(forms.ModelForm):
-#     class Meta:
-#         model = Loginrecords
-#         exclude = ["loginId",
-#                    "loginTime",
-#                    "logoutTime",
-#                    "userId",
-#                    "ip_address",
-#                    "mac_address",
-#                    ]
+class LoginrecordsForm(forms.ModelForm):
+    class Meta:
+        model = Loginrecords
+        exclude = ["loginId",
+                   "loginTime",
+                   "logoutTime",
+                   "userId",
+                   "ip_address",
+                   "mac_address",
+                   ]
 
 
 

@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^notlogin/$',views.notlogin,name="notlogin"),
 
     url(r'^logout/$',views.logout,name="logout"),
+    url(r'^contactus/$',views.contactus,name="contactus")
 
 
 

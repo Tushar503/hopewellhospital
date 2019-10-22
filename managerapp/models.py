@@ -7,10 +7,10 @@ class Department(models.Model):
     depttName = models.CharField(max_length=50, default="")
     isActive = models.BooleanField(default=True)
 
-# class Loginrecords(models.model):
-#     loginId = models.AutoField(primary_key=True)
-#     loginTime = models.CharField(max_length=50, default="")
-#     logoutTime = models.CharField(max_length=50, default="")
-#     userId = models.CharField(max_length=50, default="")
-#     ip_address = models.CharField(max_length=50, default="")
-#     mac_address = models.CharField(max_length=50,default="")
+class Loginrecords(models.Model):
+    loginId = models.AutoField(primary_key=True)
+    loginTime = models.CharField(max_length=50, default="")
+    logoutTime = models.CharField(max_length=50, default="")
+    userId = models.CharField(max_length=50, default="")
+    ip_address = models.CharField(max_length=50, default="")
+    mac_address = models.CharField(max_length=50,default="")
