@@ -19,7 +19,7 @@ def addstaff(request):
         paswrd = request.POST['userpassword']
 
 
-        confirmationlink = "http://127.0.0.1:8000/login/?email=%s?password=%s" % (email, paswrd) + paswrd
+        confirmationlink = "http://127.0.0.1:8000/login/?email=%s?password=%s" % (email, paswrd)
 
         image = None
         try:
