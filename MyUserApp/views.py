@@ -241,3 +241,7 @@ def updateprofile(request):
 
 def contactus(request):
     return render(request, 'contactus.html')
+
+
+def patient(request):
+    return render(request,"patient.html")
