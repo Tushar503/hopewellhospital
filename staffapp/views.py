@@ -47,7 +47,7 @@ def addstaff(request):
 
         f.userToken = ""
         f.userOtp = ""
-        f.userOtptime = ""
+        f.userOtptime = " "
         f.depttId_id=request.POST["deptid"]
 
 
