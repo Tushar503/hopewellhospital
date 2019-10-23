@@ -102,6 +102,7 @@ def login(request):
                 request.session['roleid']=data.roleId_id
                 form=LoginrecordsForm(request.POST)
                 f = form.save(commit=False)
+                f.userId = email
                 f.loginTime= dt.datetime.now()
                 f.mac_address = hex(uuid.getnode())
                 host_name=socket.gethostname()
