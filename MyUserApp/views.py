@@ -144,15 +144,28 @@ def notlogin(request):
 
 def unauthorised_access(request):
     return render(request,"unauthorize_access.html")
+
 def logout(request):
+    email=request.session['useremail']
+    data=Loginrecords.objects.filter(userEmail=email).order_by("-id")[0:1]
+    idd=0
+    for i in data:
+        idd=i.id
+        break
     try:
         request.session.pop("Authentication")
         request.session.pop("emailid")
         request.session.pop("roleid")
-
-        return redirect("/login/")
+        logouttime=str(dt.datetime.now())
+        if idd > 0 :
+            updateData=Loginrecords(id=idd,logoutTime=logouttime)
+            updateData.save(update_fields=["logoutTime"])
+        else:
+            pass
+            return redirect("/login/")
     except:
         return redirect("/login/")
+
 
 
 

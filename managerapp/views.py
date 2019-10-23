@@ -32,12 +32,15 @@ def manager(request):
 
 def departmentadd(request):
     if request.method=="POST":
-        form=DepartmentForm(request.POST)
-        f=form.save(commit=False)
-        f.depttName= request.POST["department"]
-        f.isActive = True
-        f.save()
-        return render(request, "department.html", {'success': True})
+        try:
+            form=DepartmentForm(request.POST)
+            f=form.save(commit=False)
+            f.depttName= request.POST["department"]
+            f.isActive = True
+            f.save()
+            return render(request, "department.html", {'success': True})
+        except:
+            return render(request,"department.html",{'taru': True})
 
     return render(request, "department.html")
 
@@ -59,6 +62,7 @@ def departmentupdate(request):
             update_fields=["depttName"])
             return redirect("/manager/departmentview/")
         return render(request,"departmentupdate.html",{'success': True, 'd1':data})
+
 
 
 
