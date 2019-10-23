@@ -13,7 +13,21 @@
         alert("Email Invalid");
     </script>
     {% endif %}
+
+     {% if wrongfi %}
+    <script type="text/javascript">
+        alert("you dont select right options");
+    </script>
+    {% endif %}
 <div class="box2" style="width:550px; position:relative; left:550px; top:20px;">
+          <div> <select class="form-control form-control-lg" name="role">
+            <option value="3">PATIENT</option>
+            <option value="1">MANAGER</option>
+            <option value="2">DOCTOR</option>
+            <option value="4">STAFF</option>
+
+        </select></div>
+
 <div class="form-row">
          <div class="form-group col-md-6">
             <label style="font-weight:bold;">Email</label>

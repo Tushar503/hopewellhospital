@@ -8,6 +8,8 @@ from managerapp.forms import DepartmentForm
 from managerapp.models import Department
 
 from Authorize import authcheck
+def staff(request):
+    return render(request,"staffpage.html")
 
 def addstaff(request):
     dept = Department.objects.all()

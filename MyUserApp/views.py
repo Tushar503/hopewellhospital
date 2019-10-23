@@ -1,5 +1,8 @@
 from django.shortcuts import render,HttpResponse,redirect
 from miscellaneous import email_send,myconstants
+from staffapp.forms import StaffForm
+from staffapp.models import Staff
+
 from MyUserApp.forms import UserSignupForm
 from MyUserApp.models import UserSignup
 from django.core.files.storage import FileSystemStorage
@@ -93,7 +96,14 @@ def login(request):
         email=request.POST['useremail']
         password=request.POST['userpassword']
         try:
-            data=UserSignup.objects.get(userEmail=email)
+            usertype=request.POST['role']
+            data=""
+            if(usertype=="1" or usertype =="3"):
+                data=UserSignup.objects.get(userEmail=email)
+            elif (usertype == "2" or usertype == "4"):
+                data = Staff.objects.get(userEmail=email)
+            else:
+                return redirect("/login/",{'wrongfi':True})
             dbpassword=data.userPassword
             auth=check_password(password,dbpassword)
             if(auth==True):
@@ -114,10 +124,12 @@ def login(request):
 
                 if data.roleId_id ==1:
                     return redirect("/manager/")
-                elif data.roleId_id==2:
-                    return render(request, "doctor.html")
-
-
+                elif data.roleId_id==3:
+                    return redirect("/user/patient/")
+                elif data.roleId==2:
+                    return redirect("/doctorsapp/doctor/")
+                elif data.roleId==4:
+                    return redirect("/staffapp/")
 
 
                 #return render(request, "manager.html")
@@ -241,7 +253,5 @@ def updateprofile(request):
 
 def contactus(request):
     return render(request, 'contactus.html')
-
-
 def patient(request):
     return render(request,"patient.html")
