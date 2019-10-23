@@ -27,6 +27,7 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^user/',include('MyUserApp.urls')),
     url(r'^manager/',include('managerapp.urls')),
+    url(r'^doctor/',include('doctorsapp.urls')),
     url(r'^staffapp/',include('staffapp.urls')),
     url(r'^signup/$',views.usersignup),
     url(r'^verified/$',views.verify),

@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponse,redirect
-from miscellaneous import email_send,myconstants
+from miscellaneous import email_send,myconstants,staff_email
 from staffapp.forms import StaffForm
 from staffapp.models import Staff
 from django.core.files.storage import FileSystemStorage
@@ -12,13 +12,15 @@ from Authorize import authcheck
 def addstaff(request):
     dept = Department.objects.all()
     if request.method == "POST":
-
-
-
         email = request.POST['useremail']
+        paswrd = request.POST['userpassword']
         form = StaffForm(request.POST)
         email = request.POST['useremail']
-        #confirmationlink = "http://127.0.0.1:8000/verified/?email=" + email + "&token=" + otp
+        paswrd = request.POST['userpassword']
+
+
+        confirmationlink = "http://127.0.0.1:8000/login/?email=%s?password=%s" % (email, paswrd)
+
         image = None
         try:
              if request.FILES:
@@ -39,7 +41,7 @@ def addstaff(request):
         f.userAddress = request.POST["useraddress"]
         f.userCity = request.POST["usercity"]
         f.userState = request.POST["userstate"]
-        f.roleId=request.POST["roleid"]
+        f.userPost=request.POST["post"]
         f.userImage = image
         f.isActive = True
         f.isAvailable = True
@@ -53,7 +55,7 @@ def addstaff(request):
 
         f.save()
 
-        #email_send.e_mail("signuplink", email, confirmationlink)
+        staff_email.email("Appointment Letter",email, paswrd, confirmationlink)
 
         return render(request, "addstaff.html", {'success': True})
 
