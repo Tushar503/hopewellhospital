@@ -107,9 +107,18 @@ def login(request):
             dbpassword=data.userPassword
             auth=check_password(password,dbpassword)
             if(auth==True):
+                print("auth true")
                 request.session['Authentication']=True
                 request.session['useremail'] = email
-                request.session['roleid']=data.roleId_id
+
+                if(usertype=="1" or usertype =="3"):
+                   request.session['roleid']=int(data.roleId_id)
+                elif (usertype == "2" or usertype == "4"):
+                    print("usertype ",usertype)
+                    request.session['roleid'] = int(data.roleId)
+
+
+
                 form=LoginrecordsForm(request.POST)
                 f = form.save(commit=False)
                 f.userId = email
@@ -121,14 +130,14 @@ def login(request):
 
 
 
-
-                if data.roleId_id ==1:
+                print("roleid= ",type(request.session['roleid']))
+                if request.session['roleid'] == 1:
                     return redirect("/manager/")
-                elif data.roleId_id==3:
+                elif request.session['roleid']== 3:
                     return redirect("/user/patient/")
-                elif data.roleId==2:
+                elif request.session['roleid']== 2:
                     return redirect("/doctorsapp/doctor/")
-                elif data.roleId==4:
+                elif request.session['roleid']== 4:
                     return redirect("/staffapp/")
 
 
@@ -147,18 +156,18 @@ def unauthorised_access(request):
 
 def logout(request):
     email=request.session['useremail']
-    data=Loginrecords.objects.filter(userEmail=email).order_by("-id")[0:1]
+    data=Loginrecords.objects.filter(userEmail=email).order_by("-loginId")[0:1]
     idd=0
     for i in data:
-        idd=i.id
+        idd=i.loginId
         break
     try:
         request.session.pop("Authentication")
-        request.session.pop("emailid")
+        request.session.pop("useremail")
         request.session.pop("roleid")
         logouttime=str(dt.datetime.now())
         if idd > 0 :
-            updateData=Loginrecords(id=idd,logoutTime=logouttime)
+            updateData=Loginrecords(loginId=idd,logoutTime=logouttime)
             updateData.save(update_fields=["logoutTime"])
         else:
             pass
