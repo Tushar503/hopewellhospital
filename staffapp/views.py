@@ -39,7 +39,7 @@ def addstaff(request):
         f.userAddress = request.POST["useraddress"]
         f.userCity = request.POST["usercity"]
         f.userState = request.POST["userstate"]
-        f.userPost=request.POST["post"]
+        f.roleId=request.POST["roleid"]
         f.userImage = image
         f.isActive = True
         f.isAvailable = True
