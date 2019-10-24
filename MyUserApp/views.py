@@ -107,7 +107,6 @@ def login(request):
             dbpassword=data.userPassword
             auth=check_password(password,dbpassword)
             if(auth==True):
-                print("auth true")
                 request.session['Authentication']=True
                 request.session['useremail'] = email
 
@@ -156,21 +155,27 @@ def unauthorised_access(request):
 
 def logout(request):
     email=request.session['useremail']
-    data=Loginrecords.objects.filter(userEmail=email).order_by("-loginId")[0:1]
+    data=Loginrecords.objects.filter(userId=email).order_by("-loginId")[0:1]
     idd=0
+    print("step 1 ",idd)
     for i in data:
+        print("step 3 ", idd)
         idd=i.loginId
+        print(idd)
         break
+    print("step 2 ", idd)
     try:
+
         request.session.pop("Authentication")
         request.session.pop("useremail")
         request.session.pop("roleid")
+        print("session deleted")
         logouttime=str(dt.datetime.now())
         if idd > 0 :
             updateData=Loginrecords(loginId=idd,logoutTime=logouttime)
             updateData.save(update_fields=["logoutTime"])
         else:
-            pass
+
             return redirect("/login/")
     except:
         return redirect("/login/")
