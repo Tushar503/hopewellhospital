@@ -14,18 +14,26 @@ def manager(request):
     try:
         authdata = authcheck.authentication(request.session['Authentication'], request.session['roleid'],
                                             myconstants.MANAGER)
+        print("step 1")
         if (authdata == True):
+            print("step 2")
             email = request.session['useremail']
+            print("step x")
             data = UserSignup.objects.get(userEmail=email)
+            print("step y")
             return render(request,"manager.html",{'d2':data})
-
+            print("step 3")
         else:
+            print("step4")
             authinfo, message = authdata
             if (message == "Invalid_user"):
                 return redirect("/user/unauthorised_access/")
+                print("step5")
             elif (message == "Not_Login"):
                 return redirect("/notlogin/")
+                print("step6")
     except:
+        print("step7")
         return redirect("/notlogin/")
 
 
