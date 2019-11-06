@@ -25,3 +25,18 @@ class Staff(models.Model):
     isQueue = models.BooleanField(default=False)
     isVerified = models.BooleanField(default=False)
 
+
+class Appointment(models.Model):
+    userEmail = models.CharField(primary_key=True, max_length=200, default="")
+    userName = models.CharField(max_length=200, default="")
+    userAge = models.CharField(max_length=10, default="")
+    userMobile = models.CharField(max_length=200, default="")
+    userAddress = models.CharField(max_length=500, default="")
+    userCity = models.CharField(max_length=10, default="")
+    userState = models.CharField(max_length=200, default="")
+    userDisease= models.CharField(max_length=200, default="")
+    Department = models.CharField(max_length=200, default="")
+    DoctorName = models.CharField(max_length=200, default="")
+    AppointmentDate = models.CharField(max_length=200, default="")
+    isActive = models.BooleanField(default=True)
+    isQueue = models.BooleanField(default=False)
