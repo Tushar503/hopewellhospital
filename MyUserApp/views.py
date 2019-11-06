@@ -179,6 +179,7 @@ def logout(request):
             return redirect("/login/")
     except:
         return redirect("/login/")
+    return render(request,"login.html")
 
 
 
@@ -284,4 +285,7 @@ def patient(request):
     return render(request,"patient.html")
 def facilites(request):
     return render(request, 'facilites.html')
+
+def aboutus(request):
+    return render(request,'aboutus.html')
 

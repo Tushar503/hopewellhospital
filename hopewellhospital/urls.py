@@ -37,8 +37,8 @@ urlpatterns = [
 
     url(r'^logout/$',views.logout,name="logout"),
     url(r'^contactus/$',views.contactus,name="contactus"),
-    url(r'^facilites/$',views.facilites,name="facilites")
-
+    url(r'^facilites/$',views.facilites,name="facilites"),
+    url(r'^aboutus/$',views.aboutus,name="aboutus")
 
 
 
