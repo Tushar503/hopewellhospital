@@ -282,3 +282,6 @@ def contactus(request):
     return render(request, 'contactus.html')
 def patient(request):
     return render(request,"patient.html")
+def facilites(request):
+    return render(request, 'facilites.html')
+

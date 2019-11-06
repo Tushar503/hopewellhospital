@@ -1,0 +1,49 @@
+.why-choose-us-content {
+    margin-top: 10px;
+}
+.choose-us-content-list {
+    list-style: none;
+    overflow: visible;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.choose-us-content-list li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-transition: all 0.6s ease-in-out 0s;
+    -o-transition: all 0.6s ease-in-out 0s;
+    -moz-transition: all 0.6s ease-in-out 0s;
+    transition: all 0.6s ease-in-out 0s;
+}
+
+.choose-us-content-list li a {
+    position: relative;
+    border: 1px solid #eee;
+    display: block;
+    background-color: #fff;
+    padding: 33px 0;
+    text-align: center;
+    height: 320px;
+	min-height:150px;
+    transition: all 0.6s ease 0s;
+}
+.choose-us-content-list li a i {
+    color: #000;
+    font-size: 60px;
+    height: 10px;
+    line-height: 100px;
+    text-align: center;
+    transition: all 0.6s ease 0s;
+    width: 100px;
+}
+.choose-us-content-list li a p
+{ text-align:center !important;}
+
+.choose-us-content-list li a .department-name {
+    text-transform: uppercase;
+    color: #000;
+    display: inline-block;
+    margin-top: 8px;
+}
