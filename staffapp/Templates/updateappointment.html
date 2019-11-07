@@ -1,0 +1,53 @@
+{% extends 'dashboard_master.html' %}
+
+{% block content %}
+<form method="POST" >
+     {% csrf_token %}
+    {% if taru %}
+    <script type="text/javascript">
+        alert('successfully aloted');
+    </script>
+     {% endif %}
+
+
+ <div class="form-group">
+    <label >Select Department</label>
+
+        <select name="deppartment" class="form-control" >
+            <option>Select Department</option>
+            {% if d %}
+    {% for i in d %}
+
+            <option value="{{ i.depttId }}">{{i.depttName}}</option>
+    {% endfor %}
+            {% else %}
+            <option value="-1">No Department Found</option>
+    {% endif %}
+
+        </select>
+  </div><br/>
+
+ <div class="form-group">
+    <label >Select Doctor</label>
+
+        <select name="doctor" class="form-control" >
+            <option>Select Department</option>
+            {% if d1 %}
+    {% for i in d1 %}
+
+            <option value="{{ i.userFullName }}">{{ i.userFullName }}</option>
+    {% endfor %}
+            {% else %}
+            <option value="-1">No doctor found</option>
+    {% endif %}
+
+        </select>
+  </div><br/>
+
+    <input type="submit"  value="alotdoctor">
+    </form>
+
+
+
+
+{% endblock %}

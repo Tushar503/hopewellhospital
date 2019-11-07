@@ -282,7 +282,30 @@ def updateprofile(request):
 def contactus(request):
     return render(request, 'contactus.html')
 def patient(request):
-    return render(request,"patient.html")
+    try:
+        authdata = authcheck.authentication(request.session['Authentication'], request.session['roleid'],
+                                            myconstants.PATIENTS)
+
+        if (authdata == True):
+
+            email = request.session['useremail']
+
+            data = UserSignup.objects.get(userEmail=email)
+
+            return render(request, "patient.html", {'d2': data})
+
+        else:
+
+            authinfo, message = authdata
+            if (message == "Invalid_user"):
+                return redirect("/user/unauthorised_access/")
+
+            elif (message == "Not_Login"):
+                return redirect("/notlogin/")
+    except:
+        return redirect("/notlogin/")
+
+
 def facilites(request):
     return render(request, 'facilites.html')
 
