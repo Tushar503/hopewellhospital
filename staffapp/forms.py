@@ -23,20 +23,14 @@ class StaffForm(forms.ModelForm):
                  "isQueue",
                  "isVerified",
                  "isActive",
+                 "isBooked",
                  ]
 
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
         exclude = [
-                 "userName",
                  "userEmail",
-                 "userMobile",
-                 "userAge",
-                 "userAddress",
-                 "userCity",
-                 "userState",
-                 "userDisease",
                  "Department",
                  "DoctorName",
                  "AppointmentDate",

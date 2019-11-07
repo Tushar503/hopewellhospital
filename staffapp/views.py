@@ -49,7 +49,7 @@ def addstaff(request):
         f.isActive = True
         f.isAvailable = True
         f.isQueue = False
-
+        f.isBooked=False
         f.userToken = ""
         f.userOtp = ""
         f.userOtptime = " "
