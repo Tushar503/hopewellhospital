@@ -13,7 +13,7 @@ class Staff(models.Model):
     userAge = models.CharField(max_length=10, default="")
     roleId=models.CharField(max_length=1, default="")
     userAddress = models.CharField(max_length=500, default="")
-    userCity = models.CharField(max_length=10, default="")
+    userCity = models.CharField(max_length=200, default="")
     userState = models.CharField(max_length=200, default="")
     userImage = models.CharField(max_length=200, default="")
     isActive = models.BooleanField(default=True)
