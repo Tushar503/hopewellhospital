@@ -5,94 +5,73 @@
 
 
         <div class="box1" style="width:600px; height:800px; position:relative; left:400px;">
-            <h1 style="text-align:center;">APPOINTMENT FOARM</h1>
+            <h1 style="text-align:center;">APPOINTMENT FORAM</h1>
 
 <form method="post" enctype="multipart/form-data">
 
      {% csrf_token %}
-    {% if success %}
+    {% if taru %}
     <script type="text/javascript">
-        alert('Details Updated Successfully');
-
+        alert('successfully aloted');
     </script>
+     {% endif %}
 
+
+ <div class="form-group">
+    <label >Select Department</label>
+
+        <select name="deppartment" class="form-control" >
+            <option>Select Department</option>
+            {% if d %}
+    {% for i in d %}
+
+            <option value="{{ i.depttId }}">{{i.depttName}}</option>
+    {% endfor %}
+            {% else %}
+            <option value="-1">No Department Found</option>
     {% endif %}
 
+        </select>
+  </div><br/>
+
+ <div class="form-group">
+    <label >Select Doctor</label>
+
+        <select name="doctor" class="form-control" >
+            <option>Select Department</option>
+            {% if d1 %}
+    {% for i in d1 %}
+
+            <option value="{{ i.userFullName }}">{{ i.userFullName }}</option>
+    {% endfor %}
+            {% else %}
+            <option value="-1">No doctor found</option>
+    {% endif %}
+
+        </select>
+ </div><br/>
+
+     <div class="form-group">
+    <label >DATE</label>
+         <input type="date"/>
+         </div><br/>
 
 
 
-      <div class="form-group">
-    <label for="name">Full Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Enter Full Name" name="username">
-  </div>
-<br class="hero" style="position:relative; "  >
-      <div class="form-row" >
-        <div class="form-group col-md-6">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter Your mail" name="useremail">
-        </div>
 
 
-    <div class="form-row" >
-         <div class="form-group col-md-6">
-            <label for="mobile">Mobile</label>
-            <input type="text" class="form-control" id="mobile" placeholder="Enter Mobile Number" name="usermobile">
-          </div>
-            <div class="form-group col-md-6">
-                <label for="age">Age</label>
-                <input type="text" class="form-control" id="age" placeholder="Enter your Age" name="userage">
-            </div>
-    </div>
 
 
-      <div class="form-group">
-        <label for="address">Address</label>
-        <input type="text" class="form-control" id="address" placeholder="Enter Your Full Address" name="useraddress">
-      </div>
 
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="city">City</label>
-          <input type="text" class="form-control" id="city" name="usercity" placeholder="Enter City Name">
-        </div>
-
-
-        <div class="form-group col-md-6">
-          <label for="state">State</label>
-          <input type="text" class="form-control" id="state" name="userstate" placeholder="Enter State Name">
-        </div>
-          <div class="form-group col-md-6">
-            <label for="disease">disease</label>
-            <input type="text" class="form-control" id="disease" name="userdisease" placeholder="Enter disease Name">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="doctorname">Doctor Name</label>
-             <input type="text" class="form-control" id="doctorname" name="doctorname" placeholder="Enter doctor Name">
-          </div>
-          <div class="form-group col-md-6">
-              <label for="departmentname">Department Name</label>
-		        <select name="departmentname">
-			        <option value="Cardiology">Cardiology</option>
-			        <option value="Radiology">Radiology</option>
-			        <option value="Brain & Spine">Brain & Spine</option>
-			        <option value="dermatology">dermatology</option>
-			        <option value="other">other</option>
-		        </select>
-          </div>
-
-          <input type="date">
 
 
 
 
       <input  type="submit" class="btn btn-primary" value="Submit" style="align:center;">
-      </div></div>
+</form> </div></div>
 
 
-</form>
 
-    </div>
-</div>
 
 
 

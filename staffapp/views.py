@@ -65,26 +65,22 @@ def addstaff(request):
     return render(request, "addstaff.html",{'d':dept})
 
 def appotiment(request):
+    dept = Department.objects.all()
+    dept1 = Staff.objects.filter(roleId=2,isBooked=0)
+
     if request.method == "POST":
         form = AppointmentForm(request.POST)
         f = form.save(commit=False)
-        f.userName = request.POST["username"]
         f.userEmail = request.POST["useremail"]
-        f.userMobile = request.POST["usermobile"]
-        f.userAge = request.POST["userage"]
-        f.userAddress = request.POST["useraddress"]
-        f.userCity = request.POST["usercity"]
-        f.userState = request.POST["userstate"]
-        f.userDisease=request.POST["userdisease"]
-        f.Department=""
-        f.DoctorName=""
-        f.AppointmentDate=dt.datetime.now()
+        f.Department=request.POST["deppartment"]
+        f.DoctorName=request.POST["doctor"]
+        f.AppointmentDate=request.POST["date"]
         f.isActive = True
         f.isQueue = False
 
         f.save()
-        return render(request, "appotiment.html", {'success': True})
-    return render(request, "appotiment.html")
+        return render(request, "appotiment.html", {'taru': True})
+    return render(request, "appotiment.html",{'d': dept, 'd1': dept1})
 
 def staffview(request):
     email = request.session['useremail']
