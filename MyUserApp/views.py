@@ -55,7 +55,7 @@ def usersignup(request):
         f.userConfirmationlink=confirmationlink
         f.userOtp=otp
         f.userOtptime=time
-        f.roleId_id= 1
+        f.roleId_id= 3
 
         f.save()
 
@@ -244,7 +244,7 @@ def updateprofile(request):
         email = request.POST['email']
         form = UserSignupForm(request.POST)
         otp, time = email_send.OtpSend()
-        confirmationlink = "your profile is changed succesfully"
+        confirmationlink = "your profile is changed successfully"
         try:
             if request.FILES["image"]:
                 my_file = request.FILES["image"]
