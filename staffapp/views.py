@@ -71,7 +71,7 @@ def appotiment(request):
     if request.method == "POST":
         form = AppointmentForm(request.POST)
         f = form.save(commit=False)
-        f.userEmail = request.POST["useremail"]
+        f.userEmail = request.session['useremail']
         f.Department=request.POST["deppartment"]
         f.DoctorName=request.POST["doctor"]
         f.AppointmentDate=request.POST["date"]
@@ -106,5 +106,18 @@ def updateappointment(request):
                            ])
         return render(request, "updateappointment.html", {'taru': True})
     return render(request, "updateappointment.html", {'d': dept, 'd1': dept1})
+
+def todayappointment(request):
+
+    date = dt.date.today()
+    dater = date.strftime("%Y-%m-%d")
+
+    data = Appointment.objects.filter(AppointmentDate=dater)
+    print(data)
+    return render(request, "todayappointment.html", {'taru': True, 'd1': data})
+
+
+
+
 
 

@@ -9,5 +9,6 @@ urlpatterns=[
     url(r'^appotiment/$', views.appotiment, name="appotiment"),
     url(r'^staffview/$', views.staffview, name="staffview"),
     url(r'^updateappointment/$', views.updateappointment, name="updateappointment"),
+    url(r'^todayappointment/$', views.todayappointment, name="todayappointment"),
 
 ]
