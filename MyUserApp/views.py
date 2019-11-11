@@ -282,8 +282,8 @@ def updateprofile(request):
         return HttpResponse( "Profile update", {'tarun':True, 'd2': data})
     return render(request, "updateprofile.html", {'tarun':True,'d2': data})
 
-def contactus(request):
-    return render(request, 'contactus.html')
+# def contactus(request):
+#     return render(request, 'contactus.html')
 def patient(request):
     try:
         authdata = authcheck.authentication(request.session['Authentication'], request.session['roleid'],
@@ -319,10 +319,12 @@ def contactus(request):
     if (request.method == "POST"):
         email = request.POST['useremail']
         form = ContactUsForm(request.POST)
+        email = request.POST['useremail']
         f = form.save(commit=False)
-        subject = request.POST['subject']
-        date = dt.date.now()
-        text = request.POST['textarea']
+        f.userEmail = request.POST["useremail"]
+        f.subject = request.POST['subject']
+        contactDate = dt.date.now()
+        f.textArea = request.POST['textarea']
         f.isActive = True
         f.save()
         return render(request, "contactus.html")
