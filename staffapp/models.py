@@ -29,8 +29,8 @@ class Staff(models.Model):
 
 class Appointment(models.Model):
     userEmail = models.CharField(primary_key=True, max_length=200, default="")
-    Department = models.CharField(max_length=200, default="")
-    DoctorName = models.CharField(max_length=200, default="")
+    Department = models.ForeignKey(Department,on_delete=models.CASCADE)
+    DoctorEmail = models.ForeignKey(Staff,on_delete=models.CASCADE,default="")
     AppointmentDate = models.CharField(max_length=200, default="")
     isActive = models.BooleanField(default=True)
     isQueue = models.BooleanField(default=False)

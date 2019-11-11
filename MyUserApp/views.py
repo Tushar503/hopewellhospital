@@ -5,6 +5,9 @@ from staffapp.models import Staff
 
 from MyUserApp.forms import UserSignupForm
 from MyUserApp.models import UserSignup
+from MyUserApp.forms import ContactUsForm
+from MyUserApp.models import ContactUs
+
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.hashers import make_password,check_password
 from managerapp.models import Loginrecords
@@ -55,7 +58,7 @@ def usersignup(request):
         f.userConfirmationlink=confirmationlink
         f.userOtp=otp
         f.userOtptime=time
-        f.roleId_id= 3
+        f.roleId_id= 4
 
         f.save()
 
@@ -311,4 +314,18 @@ def facilites(request):
 
 def aboutus(request):
     return render(request,'aboutus.html')
+
+def contactus(request):
+    if (request.method == "POST"):
+        email = request.POST['useremail']
+        form = ContactUsForm(request.POST)
+        f = form.save(commit=False)
+        subject = request.POST['subject']
+        date = dt.date.now()
+        text = request.POST['textarea']
+        f.isActive = True
+        f.save()
+        return render(request, "contactus.html")
+    return render(request, "contactus.html")
+
 

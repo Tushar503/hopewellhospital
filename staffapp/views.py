@@ -73,7 +73,7 @@ def appotiment(request):
         f = form.save(commit=False)
         f.userEmail = request.session['useremail']
         f.Department=request.POST["deppartment"]
-        f.DoctorName=request.POST["doctor"]
+        f.DoctorEmail=request.POST["doctor"]
         f.AppointmentDate=request.POST["date"]
         f.isActive = True
         f.isQueue = False

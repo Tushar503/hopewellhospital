@@ -1,5 +1,6 @@
 from django import forms
 from MyUserApp.models import UserSignup
+from MyUserApp.models import ContactUs
 
 
 class UserSignupForm(forms.ModelForm):
@@ -24,4 +25,16 @@ class UserSignupForm(forms.ModelForm):
                  "isVerified",
                  "isActive",
                  ]
+
+
+class ContactUsForm(forms.ModelForm):
+    class Meta:
+        model = ContactUs
+        exclude = ["userEmail",
+                   "subject",
+                   "contactDate",
+                   "textArea",
+                   ]
+
+
 

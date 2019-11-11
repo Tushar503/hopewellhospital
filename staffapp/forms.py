@@ -32,7 +32,7 @@ class AppointmentForm(forms.ModelForm):
         exclude = [
                  "userEmail",
                  "Department",
-                 "DoctorName",
+                 "DoctorEmail",
                  "AppointmentDate",
                  "isQueue",
                  "isActive",

@@ -28,5 +28,10 @@ class UserSignup(models.Model):
     isVerified=models.BooleanField(default=False)
 
 
+class ContactUs(models.Model):
+    userEmail = models.CharField(primary_key=True, max_length=200)
+    subject = models.CharField(max_length=500,default="")
+    contactDate = models.CharField(max_length=30, default="")
+    textArea = models.CharField(max_length=1000, default="")
 
 
