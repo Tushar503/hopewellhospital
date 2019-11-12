@@ -183,7 +183,8 @@ def logout(request):
             return redirect("/login/")
     except:
         return redirect("/login/")
-    return render(request,"login.html")
+    return redirect("/login/")
+
 
 
 
