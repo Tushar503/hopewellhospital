@@ -1,6 +1,15 @@
 {% extends 'dashboard_master.html' %}
 
 {% block content %}
+
+<form method="POST" >
+     {% csrf_token %}
+    {% if taru %}
+    <script type="text/javascript">
+        alert('successfully updated');
+    </script>
+     {% endif %}
+
 <div>
     <h3>PAITENTS NAME  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -16,10 +25,24 @@
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ i.AppointmentDate }}
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="diagonal">
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/doctors/updatepatient/?pe={{ i.userEmail }}" >diagonal</a>
 
      </ol>
  </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -40,5 +63,5 @@
 <!--{% endfor %}-->
 <!--{% endif %}-->
 
-</div>
+</div></form>
 {% endblock %}

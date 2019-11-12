@@ -10,5 +10,5 @@ urlpatterns=[
     url(r'^staffview/$', views.staffview, name="staffview"),
     url(r'^updateappointment/$', views.updateappointment, name="updateappointment"),
     url(r'^todayappointment/$', views.todayappointment, name="todayappointment"),
-
+    url(r'^diagnoseview/$',views.diagnoseview,name="diagnoseview"),
 ]

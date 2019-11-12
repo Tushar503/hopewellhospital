@@ -1,0 +1,57 @@
+
+{% extends 'dashboard_master.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+
+
+
+<table class="table table-striped table-dark " style="position:relative;right:200px;">
+  <thead>
+    <tr>
+       <th scope="col">S.No</th>
+
+
+        <th scope="col">Email</th>
+        <th scope="col">Department</th>
+        <th scope="col">DoctorEmail</th>
+        <th scope="col">AppointmentDate</th>
+
+        <th scope="col">IsActive</th>
+        <th scope="col">IsQueue</th>
+        <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+
+    {% if d1 %}
+    {% for i in d1 %}
+    <tbody>
+    <tr>
+      <th scope="row">1</th>
+        <td>{{i.userEmail}}</td>
+        <td>{{i.Department}}</td>
+        <td>{{i.DoctorEmail_id}}</td>
+        <td>{{i.AppointmentDate}}</td>
+        <td>{{i.isActive}}</td>
+        <td>{{i.isQueue}}</td>
+        <td><a href="/staffapp/updateappointment/?ed={{ i.userEmail }} ">Edit</a></td>
+
+
+
+    </tr>
+
+
+  </tbody>
+     {% endfor %}
+    {% endif %}
+
+</table>
+</div>
+</div>
+
+
+
+</tabel>
+{% endblock %}

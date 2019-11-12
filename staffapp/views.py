@@ -12,6 +12,30 @@ import datetime as dt
 
 from Authorize import authcheck
 def staff(request):
+    try:
+        authdata = authcheck.authentication(request.session['Authentication'], request.session['roleid'],
+                                            myconstants.STAFF)
+
+        if (authdata == True):
+
+            email = request.session['useremail']
+
+            data = Staff.objects.get(userEmail=email)
+
+            return render(request, "staffpage.html", {'d2': data})
+
+        else:
+
+            authinfo, message = authdata
+            if (message == "Invalid_user"):
+                return redirect("/user/unauthorised_access/")
+
+            elif (message == "Not_Login"):
+                return redirect("/notlogin/")
+    except:
+        return redirect("/notlogin/")
+
+
     return render(request,"staffpage.html")
 
 def addstaff(request):
@@ -85,7 +109,7 @@ def appotiment(request):
 
 def staffview(request):
     email = request.session['useremail']
-    data = Appointment.objects.all()
+    data = Appointment.objects.filter(isQueue=0)
     return render(request, "appottimenttabel.html", {'taru': True, 'd1': data})
 
 def updateappointment(request):
@@ -107,9 +131,13 @@ def todayappointment(request):
     date = dt.date.today()
     dater = date.strftime("%Y-%m-%d")
 
-    data = Appointment.objects.filter(AppointmentDate=dater)
+    data = Appointment.objects.filter(AppointmentDate=dater,isQueue=0)
     print(data)
     return render(request, "todayappointment.html", {'taru': True, 'd1': data})
+def diagnoseview(request):
+    email = request.session['useremail']
+    data = Appointment.objects.filter(isDiagonal=1)
+    return render(request, "diagnoseview.html", {'taru': True, 'd1': data})
 
 
 
