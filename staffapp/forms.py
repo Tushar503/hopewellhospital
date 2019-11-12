@@ -1,6 +1,7 @@
 from django import forms
 from staffapp.models import Staff
 from staffapp.models import Appointment
+from staffapp.models import PatientPrescription
 
 class StaffForm(forms.ModelForm):
     class Meta:
@@ -37,4 +38,16 @@ class AppointmentForm(forms.ModelForm):
                  "isQueue",
                  "isActive",
                  "isDiagonal"
+                 ]
+
+
+class PatientPrescriptionForm(forms.ModelForm):
+    class Meta:
+        model = PatientPrescription
+        exclude = [
+                 "PatientId",
+                 "Prescription",
+                 "Medicine",
+                 "Test",
+                 "isActive",
                  ]
