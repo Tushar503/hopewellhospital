@@ -35,4 +35,14 @@ class Appointment(models.Model):
     isActive = models.BooleanField(default=True)
     isQueue = models.BooleanField(default=False)
     isDiagonal=models.BooleanField(default=False)
+class PatientPrescription(models.Model):
+    PrescriptionId=models.AutoField(primary_key=True)
+    PatientId = models.ForeignKey(Appointment, on_delete=models.CASCADE, default="")
+    Medicine=models.CharField(max_length=500, default="")
+    Prescription=models.CharField(max_length=500, default="")
+    Test=models.BooleanField(default=False)
+    isActive = models.BooleanField(default=True)
+
+
+
 

@@ -36,6 +36,7 @@ def doctors(request):
         return redirect("/notlogin/")
 
 
+
     return render(request,"doctors.html")
 def viewpatient(request):
     email = request.session['useremail']
