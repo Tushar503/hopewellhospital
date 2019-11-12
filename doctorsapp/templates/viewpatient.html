@@ -1,0 +1,44 @@
+{% extends 'dashboard_master.html' %}
+
+{% block content %}
+<div>
+    <h3>PAITENTS NAME  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</h3>
+  {% if d1 %}
+    {% for i in d1 %}
+ <li>
+     <ol>
+         {{ i.userEmail }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ i.AppointmentDate }}
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="diagonal">
+
+     </ol>
+ </li>
+
+
+
+{% endfor %}
+{% endif %}
+<!--<h3>DATE </h3>-->
+<!--  {% if d1 %}-->
+<!--    {% for i in d1 %}-->
+<!-- <div> <li>-->
+<!--     <ol>-->
+<!--         {{ i.AppointmentDate }}-->
+
+<!--     </ol>-->
+<!-- </li>-->
+<!--     </div>-->
+
+
+<!--{% endfor %}-->
+<!--{% endif %}-->
+
+</div>
+{% endblock %}
