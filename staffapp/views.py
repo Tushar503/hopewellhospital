@@ -77,6 +77,7 @@ def appotiment(request):
         f.AppointmentDate=request.POST["date"]
         f.isActive = True
         f.isQueue = False
+        f.isDiagonal=False
 
         f.save()
         return render(request, "appotiment.html", {'taru': True})
@@ -86,26 +87,20 @@ def staffview(request):
     email = request.session['useremail']
     data = Appointment.objects.all()
     return render(request, "appottimenttabel.html", {'taru': True, 'd1': data})
+
 def updateappointment(request):
+    get_key = request.GET["ed"]
     dept = Department.objects.all()
-    dept1=Staff.objects.all()
-    vid = request.GET["ed"]
-    data = Appointment.objects.get(userEmail=vid)
+    dept1=Staff.objects.filter(roleId=2)
     if request.method == "POST":
         vdeppartment = request.POST["deppartment"]
         vdoctor = request.POST["doctor"]
-        vqueue =True
-        vactive=True
-
-        updatedata = Appointment(userEmail=vid,Department=vdeppartment,DoctorName=vdoctor,isActive=vactive,isQueue=vqueue)
+        updatedata = Appointment(userEmail=get_key, Department_id=vdeppartment,DoctorEmail_id=vdoctor)
         updatedata.save(
-            update_fields=["Department",
-                           "DoctorName",
-                           "isActive",
-                           "isQueue",
-                           ])
+            update_fields=["Department_id","DoctorEmail_id"])
         return render(request, "updateappointment.html", {'taru': True})
     return render(request, "updateappointment.html", {'d': dept, 'd1': dept1})
+
 
 def todayappointment(request):
 

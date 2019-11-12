@@ -4,7 +4,7 @@ from staffapp.forms import StaffForm
 from staffapp.models import Staff
 
 from MyUserApp.forms import UserSignupForm
-from MyUserApp.models import UserSignup
+from MyUserApp.models import UserSignup, UserRole
 from MyUserApp.forms import ContactUsForm
 from MyUserApp.models import ContactUs
 
@@ -23,6 +23,7 @@ def home(request):
     return render(request,"index.html")
 
 def usersignup(request):
+    data = UserRole.objects.get()
     if request.method == "POST":
         email = request.POST['useremail']
         form = UserSignupForm(request.POST)
@@ -58,7 +59,7 @@ def usersignup(request):
         f.userConfirmationlink=confirmationlink
         f.userOtp=otp
         f.userOtptime=time
-        f.roleId_id= 4
+        f.roleId_id= 3
 
         f.save()
 
@@ -138,12 +139,12 @@ def login(request):
                 elif request.session['roleid']== 3:
                     return redirect("/user/patient/")
                 elif request.session['roleid']== 2:
-                    return redirect("/doctorsapp/doctor/")
+                    return redirect("/doctors/")
                 elif request.session['roleid']== 4:
                     return redirect("/staffapp/")
 
 
-                #return render(request, "manager.html")
+
             else:
                 return render(request,"login.html",{'wrongpw':True})
         except:

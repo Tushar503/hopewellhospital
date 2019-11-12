@@ -4,6 +4,7 @@ from django.conf.urls import url
 app_name='doctorsapp'
 
 urlpatterns=[
-    url(r'^doctors/$',views.doctors,name="doctors")
+    url(r'^$',views.doctors,name="doctors"),
+    url(r'^viewpatient/$',views.viewpatient,name="viewpatient")
 
 ]

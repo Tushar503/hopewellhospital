@@ -34,4 +34,5 @@ class Appointment(models.Model):
     AppointmentDate = models.CharField(max_length=200, default="")
     isActive = models.BooleanField(default=True)
     isQueue = models.BooleanField(default=False)
+    isDiagonal=models.BooleanField(default=False)
 
