@@ -16,6 +16,7 @@ urlpatterns=[
     url(r'^showprofile/$',views.showprofile,name="profile"),
     url(r'^updateprofile/$',views.updateprofile,name="profile"),
     url(r'^patient/$',views.patient,name="patient"),
+    url(r'^patientdiagnose/$',views.patientdiagnose,name="patientdiagnose"),
 
 
 

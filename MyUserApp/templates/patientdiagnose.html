@@ -1,0 +1,69 @@
+{% extends 'dashboard_master.html' %}
+{% block content %}
+
+
+
+
+        {% if d2 %}
+    {% for i in d2 %}
+
+<font size="4"> <b>YOURID:</b><u>{{i.userEmail}}</u></font></br></br>
+<font size="4"> <b>DATE:</b><u>{{i.AppointmentDate}}</u></font></br></br>
+
+        {% endfor %}
+    {% endif %}
+        {% if d3 %}
+    {% for k in d3 %}
+    <font size="4"> <b>DOCTORNAME:</b><u>{{k.userFullName}}</u></font></br></br>
+        {% endfor %}
+    {% endif %}
+
+
+
+
+        {% if d1 %}
+    {% for j in d1 %}
+
+<div class="form-group">
+    <label><font size="6"> <b>DIAGNOSED:</b></font></label><br/>
+    <label ><font size="4">{{j.Prescription}}</font></label>
+</div>
+
+<div class="form-group green-border-focus">
+     <label ><font size="6"> <b>MEDICINE:</b></font></label><br/>
+    <label><font size="4">{{j.Medicine}}</font></label>
+
+
+
+</div>
+
+
+
+
+
+        {% endfor %}
+    {% endif %}
+
+
+
+
+
+
+
+
+
+    </tr>
+
+
+  </tbody>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

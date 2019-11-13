@@ -144,19 +144,22 @@ def diagnoseview(request):
 
 
 def Prescription(request):
+    get_key = request.GET["pe"]
     if (request.method == "POST"):
         form = PatientPrescriptionForm(request.POST)
         f = form.save(commit=False)
-        f.prescription_id = request.POST['prescriptionid']
-        f.patient_id = request.POST['patientid']
-        f.medicine = request.POST['medicine']
-        f.prescription = request.POST['prescription']
-        f.test = request.POST['test']
+        f.PatientId_id = request.POST['patientid']
+        f.Medicine = request.POST['medicine']
+        f.Prescription = request.POST['prescription']
+        try:
+            f.Test = request.POST['test']
+        except:
+            f.Test= False
         f.isActive = True
         f.save()
-        return render(request,"prescription.html")
-    else:
-        return render(request, "prescription.html")
+        return render(request, "prescription.html", {'taru': True })
+
+    return render(request, "prescription.html", {'d1': get_key})
 
 
 

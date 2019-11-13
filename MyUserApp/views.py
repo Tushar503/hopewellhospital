@@ -7,6 +7,11 @@ from MyUserApp.forms import UserSignupForm
 from MyUserApp.models import UserSignup, UserRole
 from MyUserApp.forms import ContactUsForm
 from MyUserApp.models import ContactUs
+from staffapp.models import Appointment
+from staffapp.forms import  AppointmentForm
+from staffapp.models import PatientPrescription
+from staffapp.forms import  PatientPrescriptionForm
+
 
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.hashers import make_password,check_password
@@ -333,3 +338,11 @@ def contactus(request):
     return render(request, "contactus.html")
 
 
+def patientdiagnose(request):
+    email = request.session['useremail']
+    data = PatientPrescription.objects.filter(PatientId_id=email)
+    data1=Appointment.objects.filter(userEmail=email,isDiagonal=1)
+    for i in data1:
+         data2=Staff.objects.filter(userEmail=i.DoctorEmail_id)
+
+    return render(request, "patientdiagnose.html",{'d1': data,'d2': data1,'d3':data2})

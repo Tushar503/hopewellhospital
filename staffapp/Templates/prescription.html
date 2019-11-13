@@ -1,0 +1,55 @@
+{% extends 'dashboard_master.html' %}
+
+{% block content %}<br/>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if taru %}
+    <script type="text/javascript">
+        alert('Details added Successfully');
+
+    </script>
+    {% endif %}
+   <div class="form-group row">
+    <label for="staticEmail" class="col-sm-6 col-form-label">PATIENT-ID</label>
+    <div class="col-sm-10">
+        {% if d1 %}
+        <input type="text" name="patientid" value={{d1}} readonly>
+        {% endif %}
+    </div>
+   </div>
+ <div class="form-group purple-border">
+  <label for="exampleFormControlTextarea4">ADD PRESCRIPTION</label>
+  <textarea class="form-control" name="prescription" id="exampleFormControlTextarea4" rows="3"></textarea>
+</div>
+
+<div class="form-group green-border-focus">
+  <label for="exampleFormControlTextarea5">ADD MEDICINE</label>
+  <textarea class="form-control" name="medicine" id="exampleFormControlTextarea5" rows="3"></textarea>
+
+</div>
+
+    <!-- Default unchecked -->
+<div class="custom-control custom-radio">
+  <input type="radio" class="custom-control-input" value="True" id="defaultUnchecked" name="test">
+  <label class="custom-control-label" for="defaultUnchecked">TEST</label>
+</div>
+
+
+
+    <input class="btn btn-primary" type="submit" value="submit">
+
+
+    <input class="btn btn-primary btn-sm" type="reset" value="Reset">
+</div>
+
+
+
+
+
+
+      </form>
+
+
+
+
+{% endblock %}
