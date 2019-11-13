@@ -14,3 +14,9 @@ class Loginrecords(models.Model):
     userId = models.CharField(max_length=50, default="")
     ip_address = models.CharField(max_length=50, default="")
     mac_address = models.CharField(max_length=50,default="")
+class AvailableTest(models.Model):
+    TestId=models.AutoField(primary_key=True)
+    TestName=models.CharField(max_length=50, default="",unique=True)
+    TestPrice=models.CharField(max_length=50, default="")
+    ReportTime=models.CharField(max_length=50, default="")
+    isActive = models.BooleanField(default=True)

@@ -9,6 +9,7 @@ urlpatterns=[
     url(r'^department/$',views.departmentadd, name="department"),
     url(r'^departmentview/$',views.departmentview,name="deparmentview"),
     url(r'departmentupdate/$',views.departmentupdate,name="departmentupdate"),
-    url(r'^deletedepartment/$',views.deletedepartment,name="deletedepartment")
+    url(r'^deletedepartment/$',views.deletedepartment,name="deletedepartment"),
+    url(r'^testadd/$',views.testadd,name="testadd"),
 
 ]

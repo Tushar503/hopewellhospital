@@ -7,19 +7,19 @@
 
 
 <div class="col" style="position:relative;left:400px;">
-	 <h1>DEPARTMENTS</h1><br/>
+	 <h1>ADDTEST</h1><br/>
 
 <form method="post">
 	{% csrf_token %}
     {% if success %}
     <script type="text/javascript">
-        alert('Details Updated Successfully');
+        alert('Details submit Successfully');
 
     </script>
     {% endif %}
 	{% if taru %}
     <script type="text/javascript">
-        alert('DEPARTMENT ALREADY EXISTS ENTER OTHER DEPARTMENT');
+        alert('TESTNAME ALREADY EXISTS ADD OTHER  TEST ');
 
     </script>
     {% endif %}
@@ -30,14 +30,24 @@
 
 
 	<div>
-		<select name="department">
-			<option value="Cardiology">Cardiology</option>
-			<option value="Radiology">Radiology</option>
-			<option value="Brain & Spine">Brain & Spine</option>
-			<option value="dermatology">dermatology</option>
-			<option value="other">other</option>
+		<select name="name">
+			<option value="BLOODTEST">BLOODTEST</option>
+			<option value="TEST">TEST</option>
+<!--			<option value="Brain & Spine">Brain & Spine</option>-->
+<!--			<option value="dermatology">dermatology</option>-->
+<!--			<option value="other">other</option>-->
 		</select>
 	</div>
+    <div class="form-group purple-border">
+  <label for="name">PRICE OF TEST</label>
+        <input type="text" class="form-control" name="price" id="exampleFormControlTextarea4" >
+</div>
+    <div class="form-group green-border-focus">
+  <label for="name">ReportTiming</label>
+        <input type="text" class="form-control" name="time" id="exampleFormControlTextarea5" >
+</div>
+
+
 
 <br/>
 <br/>
