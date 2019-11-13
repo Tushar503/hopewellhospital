@@ -143,5 +143,3 @@ def diagnoseview(request):
 
 def Prescription(request):
 
-
-
