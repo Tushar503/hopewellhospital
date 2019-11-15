@@ -25,13 +25,15 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url('admin/', admin.site.urls),
+    url(r'^',include('social_django.urls',namespace='social')),
     url(r'^user/',include('MyUserApp.urls')),
     url(r'^manager/',include('managerapp.urls')),
     url(r'^doctors/',include('doctorsapp.urls')),
     url(r'^staffapp/',include('staffapp.urls')),
     url(r'^signup/$',views.usersignup),
     url(r'^verified/$',views.verify),
-    url(r'^login/$',views.login,name="login"),
+    url(r'^$',views.login,name="login"),
+    url(r'^$',views.home,name="index"),
 
     url(r'^notlogin/$',views.notlogin,name="notlogin"),
 

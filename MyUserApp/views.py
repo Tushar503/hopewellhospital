@@ -11,6 +11,7 @@ from staffapp.models import Appointment
 from staffapp.forms import  AppointmentForm
 from staffapp.models import PatientPrescription
 from staffapp.forms import  PatientPrescriptionForm
+from django.contrib.auth.views import logout as syslogout
 
 
 from django.core.files.storage import FileSystemStorage
@@ -28,7 +29,7 @@ def home(request):
     return render(request,"index.html")
 
 def usersignup(request):
-    data = UserRole.objects.get()
+    #data = UserRole.objects.get()
     if request.method == "POST":
         email = request.POST['useremail']
         form = UserSignupForm(request.POST)
@@ -162,7 +163,9 @@ def notlogin(request):
 def unauthorised_access(request):
     return render(request,"unauthorize_access.html")
 
+
 def logout(request):
+    syslogout(request)
     email=request.session['useremail']
     data=Loginrecords.objects.filter(userId=email).order_by("-loginId")[0:1]
     idd=0

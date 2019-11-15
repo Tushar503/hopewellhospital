@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'MyUserApp',
     'managerapp',
     'doctorsapp',
-    'staffapp'
+    'staffapp',
+    'social_django'
 ]
 
 MIDDLEWARE = [
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware'
 ]
 
 ROOT_URLCONF = 'hopewellhospital.urls'
@@ -75,6 +77,12 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS=(
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend'
+)
+
 
 WSGI_APPLICATION = 'hopewellhospital.wsgi.application'
 
@@ -139,3 +147,13 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"media")
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE=5*60
 SESSION_SAVE_EVERY_REQUEST = True
+
+#content for google api
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY='776047124687-bho224reqpqsi1dcr3oktrpcjvogpg6q.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET='C9J6IqdsUPh0toSyruBwdtvQ'
+
+LOGIN_URL='/auth/login/google-oauth2/'
+LOGIN_REDIRECT_URL='/manager/department/'
+LOGOUT_REDIRECT_URL='/logout/'
+
+SOCIAL_AUTH_URL_NAMESPACE='social'  #jaha name social milega wha se data cal krega
