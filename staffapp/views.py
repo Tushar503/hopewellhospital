@@ -166,6 +166,24 @@ def Prescription(request):
     return render(request, "prescription.html", {'d1': get_key,'d2':data})
 
 
+def PatientTest(request):
+    if request.method=="POST":
+        try:
+            form=AvailableTestForm(request.POST)
+            f=form.save(commit=False)
+            f.TestName= request.POST["name"]
+            f.TestPrice = request.POST["price"]
+            f.ReportDate=request.POST["time"]
+            f.TestDate=request.POST[""]
+            f.PatientId=request.POST[""]
+            f.DoctorId=request.POST[""]
+            f.isActive = True
+            f.save()
+            return render(request, "testadd.html", {'success': True})
+        except:
+            return render(request,"testadd.html",{'taru': True})
+
+    return render(request, "testadd.html")
 
 
 
