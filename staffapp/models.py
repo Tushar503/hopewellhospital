@@ -1,6 +1,6 @@
 from django.db import models
 from managerapp.models import Department
-
+from managerapp.models import AvailableTest
 
 # Create your models here.
 
@@ -42,6 +42,17 @@ class PatientPrescription(models.Model):
     Prescription=models.CharField(max_length=500, default="")
     Test=models.BooleanField(default=False)
     isActive = models.BooleanField(default=True)
+class PatientTest(models.Model):
+    TestId = models.AutoField(primary_key=True)
+    TestName = models.CharField(max_length=50, default="", unique=True)
+    TestPrice = models.CharField(max_length=50, default="")
+    TestDate= models.CharField(max_length=50, default="")
+    ReportDate = models.CharField(max_length=50, default="")
+    PatientId = models.ForeignKey(Appointment, on_delete=models.CASCADE, default="")
+    DoctorId = models.ForeignKey(Staff, on_delete=models.CASCADE, default="")
+    isAvailable = models.BooleanField(default=True)
+
+
 
 
 
