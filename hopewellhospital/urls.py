@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^staffapp/',include('staffapp.urls')),
     url(r'^signup/$',views.usersignup),
     url(r'^verified/$',views.verify),
-    url(r'^$',views.login,name="login"),
+    url(r'^login/$',views.login,name="login"),
     url(r'^$',views.home,name="index"),
 
     url(r'^notlogin/$',views.notlogin,name="notlogin"),

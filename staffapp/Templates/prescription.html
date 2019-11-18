@@ -30,7 +30,7 @@
 
     <!-- Default unchecked -->
 <div class="custom-control custom-radio">
-  <input type="radio" class="custom-control-input" value="True" id="defaultUnchecked" name="test">
+  <input type="radio" class="custom-control-input" value="True" id="r1" name="test">
   <label class="custom-control-label" for="defaultUnchecked">TEST</label>
 </div>
 
@@ -47,7 +47,63 @@
 
 
 
-      </form><!--//content-inner-->
+      </form>
+<div style="padding:200px;200px;display:none;" id="div1">
+ <form >
+     <div>
+<h2>AVAILABEL TEST</h2>
+        {% if d2 %}
+         {% for i in d2 %}
+
+
+
+         <div class="container">
+<div class="col-md-4">
+
+
+				<div class="form-check">
+					<label>
+						<input type="checkbox" name="check" data-id="#n{{i.TestId}}" class="c1" id="c1"> <span class="label-text">{{i.TestName}}</span>
+					</label>
+				</div></div></div>
+         <div style="display:None;" class="div2" id="n{{i.TestId}}">
+
+         <h4><label><b>Price</b>{{i.TestPrice}}</label></h4>
+         <h4>  <label><b>ReportTiming</b>{{i.ReportTime}}</label></h4>
+        <h4> <label><b>TestId</b>{{i.TestId}}</label></h4>
+         </div>
+
+            {% endfor %}
+        {% endif %}
+
+
+     </div></form>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+$("#r1").click(function(){
+$("#div1").toggle();
+ });
+
+});
+
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$(".c1").click(function(){
+var a = $(this).attr('data-id');
+$(a).toggle();
+        });
+});
+</script>
+
+
+
+
+
+<!--//content-inner-->
 			<!--/sidebar-menu-->
 				<div class="sidebar-menu">
 					<header class="logo">
@@ -56,6 +112,9 @@
 				  </a>
 				</header>
 			<div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
+
+
+
 
 
 

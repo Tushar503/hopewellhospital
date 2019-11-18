@@ -8,6 +8,9 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.hashers import make_password,check_password
 from managerapp.forms import DepartmentForm
 from managerapp.models import Department
+from managerapp.models import AvailableTest
+from managerapp.forms import AvailableTestForm
+
 from staffapp.models import PatientPrescription
 from staffapp.forms import PatientPrescriptionForm
 import datetime as dt
@@ -144,6 +147,7 @@ def diagnoseview(request):
 
 
 def Prescription(request):
+    data=AvailableTest.objects.all()
     get_key = request.GET["pe"]
     if (request.method == "POST"):
         form = PatientPrescriptionForm(request.POST)
@@ -159,7 +163,7 @@ def Prescription(request):
         f.save()
         return render(request, "prescription.html", {'taru': True })
 
-    return render(request, "prescription.html", {'d1': get_key})
+    return render(request, "prescription.html", {'d1': get_key,'d2':data})
 
 
 
