@@ -34,13 +34,47 @@
   <label class="custom-control-label" for="defaultUnchecked">TEST</label>
 </div>
 
+ <form >
+
+
+
+
+
+
+         <div class="container">
+<div class="col-md-4" style="display:none;" id="div1">
+          {% if d2 %}
+         {% for i in d2 %}
+
+
+
+				<div class="form-check" >
+					<label>
+						<input type="checkbox" value="{{i.TestId}}" name="{{i.TestId}}" data-id="#n{{i.TestId}}" class="c1" id="c1"> <span class="label-text">{{i.TestName}}</span>
+					</label>
+                    </div>
+
+            {% endfor %}
+        {% endif %}
+
+
+
+
+</div>
+
+
+
+
+
+         </div>
+
 
 
     <input class="btn btn-primary" type="submit" value="submit">
 
 
     <input class="btn btn-primary btn-sm" type="reset" value="Reset">
-</div>
+
 
 
 
@@ -48,37 +82,19 @@
 
 
       </form>
-<div style="padding:200px;200px;display:none;" id="div1">
- <form >
-     <div>
-<h2>AVAILABEL TEST</h2>
-        {% if d2 %}
-         {% for i in d2 %}
+
+<!--<div style="padding-top:0px; padding-left:200px;display:none;" id="div1">-->
+    <!--         <div style="display:None;" class="div2" id="n{{i.TestId}}">-->
+
+<!--         <label>Price:</label><input type="text"  name="price" value="{{i.TestPrice}}" readonly>-->
+<!--             <label>ReportTiming: </label><input type="text" name="time" value="{{i.ReportTime}}" readonly>-->
+<!--        <label>TestId</label></h4><input type="text" name="time" value="{{i.TestId}}" readonly>&ndash;&gt;-->
+<!--             <label>Date:</label><input type="date" name="date">-->
+<!--         </div>-->
 
 
 
-         <div class="container">
-<div class="col-md-4">
 
-
-				<div class="form-check">
-					<label>
-						<input type="checkbox" name="check" data-id="#n{{i.TestId}}" class="c1" id="c1"> <span class="label-text">{{i.TestName}}</span>
-					</label>
-				</div></div></div>
-         <div style="display:None;" class="div2" id="n{{i.TestId}}">
-
-         <h4><label><b>Price</b>{{i.TestPrice}}</label></h4>
-         <h4>  <label><b>ReportTiming</b>{{i.ReportTime}}</label></h4>
-        <h4> <label><b>TestId</b>{{i.TestId}}</label></h4>
-         </div>
-
-            {% endfor %}
-        {% endif %}
-
-
-     </div></form>
-</div>
 <script type="text/javascript">
 $(document).ready(function(){
 $("#r1").click(function(){
@@ -90,14 +106,14 @@ $("#div1").toggle();
 
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){
-$(".c1").click(function(){
-var a = $(this).attr('data-id');
-$(a).toggle();
-        });
-});
-</script>
+<!--<script type="text/javascript">-->
+<!--$(document).ready(function(){-->
+<!--$(".c1").click(function(){-->
+<!--var a = $(this).attr('data-id');-->
+<!--$(a).toggle();-->
+<!--        });-->
+<!--});-->
+<!--</script>-->
 
 
 
@@ -105,7 +121,7 @@ $(a).toggle();
 
 <!--//content-inner-->
 			<!--/sidebar-menu-->
-				<div class="sidebar-menu">
+    <div class="sidebar-menu">
 					<header class="logo">
 					<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="index.html"> <span id="logo"> <h1>Augment</h1></span>
 					<!--<img id="logo" src="" alt="Logo"/>-->

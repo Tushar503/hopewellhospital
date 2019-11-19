@@ -10,7 +10,8 @@ from managerapp.forms import DepartmentForm
 from managerapp.models import Department
 from managerapp.models import AvailableTest
 from managerapp.forms import AvailableTestForm
-
+from staffapp.forms import PatientTestForm
+from staffapp.models import PatientTest
 from staffapp.models import PatientPrescription
 from staffapp.forms import PatientPrescriptionForm
 import datetime as dt
@@ -147,8 +148,9 @@ def diagnoseview(request):
 
 
 def Prescription(request):
-    data=AvailableTest.objects.all()
     get_key = request.GET["pe"]
+    data1 = Appointment.objects.filter(userEmail=get_key)
+    data=AvailableTest.objects.all()
     if (request.method == "POST"):
         form = PatientPrescriptionForm(request.POST)
         f = form.save(commit=False)
@@ -161,29 +163,56 @@ def Prescription(request):
             f.Test= False
         f.isActive = True
         f.save()
+        idList = []
+        for i in data:
+            try:
+                value = request.POST[str(i.TestId)]
+                idList.append(value)
+            except:
+                pass
+
+        for j in idList:
+          tdata=AvailableTest.objects.get(TestId=j)
+          form1 = PatientTestForm(request.POST)
+          f1 = form1.save(commit=False)
+
+
+          f1.TestName = tdata.TestName
+          f1.TestPrice = tdata.TestPrice
+          f1.ReportDate =tdata.ReportTime
+          f1.TestDate = dt.date.today()
+          f1.PatientId_id = get_key
+          for i in data1:
+            f1.DoctorId_id = i.DoctorEmail_id
+          f1.isActive = True
+          f1.save()
+
         return render(request, "prescription.html", {'taru': True })
 
     return render(request, "prescription.html", {'d1': get_key,'d2':data})
 
 
-def PatientTest(request):
-    if request.method=="POST":
-        try:
-            form=AvailableTestForm(request.POST)
-            f=form.save(commit=False)
-            f.TestName= request.POST["name"]
-            f.TestPrice = request.POST["price"]
-            f.ReportDate=request.POST["time"]
-            f.TestDate=request.POST[""]
-            f.PatientId=request.POST[""]
-            f.DoctorId=request.POST[""]
-            f.isActive = True
-            f.save()
-            return render(request, "testadd.html", {'success': True})
-        except:
-            return render(request,"testadd.html",{'taru': True})
-
-    return render(request, "testadd.html")
+# def PatientTest(request):
+#     get_key = request.GET["pe"]
+#     data1 = Appointment.objects.filter(DoctorEmail_id=get_key)
+#     if request.method=="POST":
+#         try:
+#             form=AvailableTestForm(request.POST)
+#             f=form.save(commit=False)
+#             f.TestName= request.POST["name"]
+#             f.TestPrice = request.POST["price"]
+#             f.ReportDate=request.POST["time"]
+#             f.TestDate=request.POST["date"]
+#             f.PatientId=get_key
+#             for i in data:
+#               f.DoctorId=i.DoctorEmail_id
+#             f.isActive = True
+#             f.save()
+#             return render(request, "testadd.html", {'success': True})
+#         except:
+#             return render(request,"testadd.html",{'taru': True})
+#
+#     return render(request, "testadd.html")
 
 
 

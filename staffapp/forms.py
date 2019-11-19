@@ -54,7 +54,7 @@ class PatientPrescriptionForm(forms.ModelForm):
                  ]
 
 
-class PatientTest(forms.ModelForm):
+class PatientTestForm(forms.ModelForm):
     class Meta:
         model = PatientTest
         exclude = ["TestId",
